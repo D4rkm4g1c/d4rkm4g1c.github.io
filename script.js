@@ -1,3 +1,18 @@
+// Add this at the top of your script.js
+console.log('Script loaded');
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded');
+    const terminalElement = document.getElementById('terminal-content');
+    console.log('Terminal element:', terminalElement);
+    if (terminalElement) {
+        const terminal = new Terminal('terminal-content');
+    } else {
+        console.error('Terminal element not found');
+    }
+});
+
+
 // Typewriter effect
 const typewriterText = document.getElementById('typewriter-text');
 const phrases = [
