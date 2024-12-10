@@ -313,3 +313,151 @@ document.body.addEventListener('click', (e) => {
     }
 });
 
+class Terminal {
+    constructor(containerId) {
+        this.container = document.getElementById(containerId);
+        this.commandHistory = [];
+        this.historyIndex = -1;
+        this.currentCommand = '';
+        this.isTyping = false;
+        
+        // Initial commands and responses
+        this.commands = [
+            { command: 'whoami', response: 'Cybersecurity Professional' },
+            { command: 'ls ./skills', response: [
+                '> Penetration Testing',
+                '> Cloud Security',
+                '> Security Tool Development'
+            ]},
+            { command: 'cat /etc/profile', response: [
+                'Experience:',
+                '- Security Assessments',
+                '- Tool Development',
+                '- Cloud Security'
+            ]}
+        ];
+        
+        this.init();
+    }
+
+    init() {
+        this.clearTerminal();
+        this.typeNextCommand();
+    }
+
+    clearTerminal() {
+        this.container.innerHTML = '';
+    }
+
+    createCommandLine(command) {
+        const line = document.createElement('div');
+        line.className = 'command-line';
+        
+        const prompt = document.createElement('span');
+        prompt.className = 'prompt';
+        prompt.textContent = '$';
+        
+        const commandText = document.createElement('span');
+        commandText.className = 'command-text';
+        
+        // Syntax highlighting
+        const highlightedCommand = this.highlightSyntax(command);
+        commandText.innerHTML = highlightedCommand;
+        
+        line.appendChild(prompt);
+        line.appendChild(commandText);
+        
+        return line;
+    }
+
+    highlightSyntax(command) {
+        // Split command into parts
+        const parts = command.split(' ');
+        let highlighted = '';
+        
+        // Highlight first word as command
+        highlighted += `<span class="command-text">${parts[0]}</span>`;
+        
+        // Highlight remaining parts
+        for (let i = 1; i < parts.length; i++) {
+            const part = parts[i];
+            if (part.startsWith('--') || part.startsWith('-')) {
+                highlighted += ` <span class="parameter">${part}</span>`;
+            } else if (part.startsWith('./') || part.includes('/')) {
+                highlighted += ` <span class="argument">${part}</span>`;
+            } else {
+                highlighted += ` ${part}`;
+            }
+        }
+        
+        return highlighted;
+    }
+
+    async typeCommand(command, element) {
+        const chars = command.split('');
+        for (let char of chars) {
+            await new Promise(resolve => setTimeout(resolve, 50 + Math.random() * 50));
+            element.innerHTML += char;
+        }
+    }
+
+    createResponse(response) {
+        const responseElement = document.createElement('div');
+        responseElement.className = 'response';
+        
+        if (Array.isArray(response)) {
+            response.forEach(line => {
+                const lineElement = document.createElement('div');
+                lineElement.textContent = line;
+                responseElement.appendChild(lineElement);
+            });
+        } else {
+            responseElement.textContent = response;
+        }
+        
+        return responseElement;
+    }
+
+    async typeNextCommand() {
+        if (this.isTyping || this.commands.length === 0) return;
+        
+        this.isTyping = true;
+        const command = this.commands.shift();
+        
+        // Create and add command line
+        const commandLine = this.createCommandLine('');
+        this.container.appendChild(commandLine);
+        
+        // Add blinking cursor
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor-blink';
+        commandLine.appendChild(cursor);
+        
+        // Type command
+        await this.typeCommand(command.command, commandLine.querySelector('.command-text'));
+        
+        // Remove cursor and add response
+        cursor.remove();
+        
+        // Add response after small delay
+        await new Promise(resolve => setTimeout(resolve, 500));
+        this.container.appendChild(this.createResponse(command.response));
+        
+        // Scroll to bottom
+        this.container.scrollTop = this.container.scrollHeight;
+        
+        // Store in history
+        this.commandHistory.push(command.command);
+        
+        this.isTyping = false;
+        
+        // Continue with next command after delay
+        setTimeout(() => this.typeNextCommand(), 1000);
+    }
+}
+
+// Initialize terminal when document is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const terminal = new Terminal('terminal-content');
+});
+
