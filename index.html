@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D4rkm4g1c | Cybersecurity Professional</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" as="style">
+    
+    <!-- Defer non-critical CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -18,7 +22,7 @@
                 <picture>
                     <source srcset="images/logo.webp" type="image/webp">
                     <source srcset="images/logo.svg" type="image/svg+xml">
-                    <img src="images/logo.png" alt="D4rkm4g1c Logo" class="logo-image">
+                    <img src="images/logo.png" alt="D4rkm4g1c Logo" class="logo-image" width="50" height="50" loading="lazy">
                 </picture>
                 <span class="logo-text">D4rkm4g1c</span>
             </div>

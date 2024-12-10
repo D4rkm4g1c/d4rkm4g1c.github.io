@@ -12,49 +12,60 @@ document.addEventListener('DOMContentLoaded', () => {
     if (terminalElement && !terminalInstance) {
         terminalInstance = new Terminal('terminal-content');
     }
+
+    // Optimize typewriter
+    const typewriterText = document.getElementById('typewriter-text');
+    const phrases = ['Cybersecurity Consultant', 'CSTM Certified', 'Caffeine Addict'];
+    let currentPhrase = 0;
+    
+    function updateTypewriter() {
+        typewriterText.textContent = phrases[currentPhrase];
+        currentPhrase = (currentPhrase + 1) % phrases.length;
+    }
+    
+    // Update every 3 seconds instead of character by character
+    setInterval(updateTypewriter, 3000);
+    
+    // Optimize scroll handling
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(() => {
+                const navbar = document.getElementById('navbar');
+                navbar.style.background = window.scrollY > 50 ? 
+                    'rgba(10, 10, 10, 0.95)' : 'transparent';
+                scrollTimeout = null;
+            }, 150);
+        }
+    }, { passive: true });
+    
+    // Optimize modal handling
+    const modalHandler = (() => {
+        const modals = document.querySelectorAll('.project-modal');
+        
+        return {
+            show: (id) => {
+                const modal = document.getElementById(id);
+                if (modal) modal.style.display = 'block';
+            },
+            hide: (modal) => {
+                modal.style.display = 'none';
+            }
+        };
+    })();
+    
+    // Optimize content filtering
+    const filterContent = (filter) => {
+        const items = document.querySelectorAll('.content-card');
+        items.forEach(item => {
+            item.style.display = 
+                filter === 'all' || item.classList.contains(filter) 
+                    ? 'block' 
+                    : 'none';
+        });
+    };
 });
 
-
-// Typewriter effect
-const typewriterText = document.getElementById('typewriter-text');
-const phrases = [
-    'Cybersecurity Consultant',
-    'CSTM Certified',
-    'Caffeine Addict'
-];
-
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let typewriterDelay = 100;
-
-function typeWriter() {
-    const currentPhrase = phrases[phraseIndex];
-    
-    if (isDeleting) {
-        typewriterText.textContent = currentPhrase.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typewriterText.textContent = currentPhrase.substring(0, charIndex + 1);
-        charIndex++;
-    }
-    
-    if (!isDeleting && charIndex === currentPhrase.length) {
-        isDeleting = true;
-        typewriterDelay = 2000; // Pause at end of phrase
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        typewriterDelay = 200;
-    } else {
-        typewriterDelay = isDeleting ? 50 : 100;
-    }
-    
-    setTimeout(typeWriter, typewriterDelay);
-}
-
-// Start the typewriter effect
-typeWriter();
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -414,4 +425,37 @@ class Terminal {
         setTimeout(() => this.typeNextCommand(), 1000);
     }
 }
+
+// Add this to the end of your script.js
+// Clean up event listeners when components are removed
+const cleanup = {
+    observers: [],
+    timeouts: [],
+    intervals: [],
+    
+    addObserver(observer) {
+        this.observers.push(observer);
+    },
+    
+    addTimeout(timeout) {
+        this.timeouts.push(timeout);
+    },
+    
+    addInterval(interval) {
+        this.intervals.push(interval);
+    },
+    
+    clearAll() {
+        this.observers.forEach(observer => observer.disconnect());
+        this.timeouts.forEach(clearTimeout);
+        this.intervals.forEach(clearInterval);
+        
+        this.observers = [];
+        this.timeouts = [];
+        this.intervals = [];
+    }
+};
+
+// Clean up when navigating away
+window.addEventListener('unload', () => cleanup.clearAll());
 

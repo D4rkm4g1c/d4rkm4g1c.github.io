@@ -7,7 +7,7 @@
     --text-secondary: #b3b3b3;
     --glow-purple: rgba(157, 0, 255, 0.3);
     --glow-blue: rgba(0, 229, 255, 0.3);
-    --transition: all 0.3s ease;
+    --transition: transform 0.2s ease;
 }
 
 * {
@@ -25,6 +25,18 @@ body {
     background-color: var(--background-dark);
     color: var(--text-primary);
     line-height: 1.6;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background-dark);
+    z-index: -1;
 }
 
 .container {
@@ -142,7 +154,7 @@ h2 {
 .skill-category:hover {
     border-color: var(--secondary-color);
     box-shadow: 0 5px 15px rgba(157, 0, 255, 0.3);
-    transform: translateY(-5px);
+    transform: translateY(-3px);
 }
 
 .skill-category h3 {
@@ -197,7 +209,7 @@ h2 {
     height: 100%;
     backface-visibility: hidden;
     padding: 2rem;
-    background: rgba(26, 26, 26, 0.95);
+    background: var(--background-light);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     overflow-y: auto;
@@ -305,9 +317,10 @@ h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
     overflow-y: auto;
+    backdrop-filter: none;
 }
 
 .modal-content {
@@ -549,7 +562,7 @@ body::before {
 .coming-soon-card:hover {
     border-color: var(--secondary-color);
     box-shadow: 0 5px 15px rgba(157, 0, 255, 0.3);
-    transform: translateY(-5px);
+    transform: translateY(-3px);
 }
 
 /* Glowing headings */
@@ -782,14 +795,9 @@ body.light-mode::before {
 }
 
 /* Particle Background Styling */
-#particles-js {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
+#particles-js,
+.particles-js-canvas-el {
+    display: none !important;
 }
 
 /* Animations */
@@ -1609,7 +1617,7 @@ body.light-mode::before {
 .research-card:hover,
 .cert-card:hover,
 .coming-soon-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(157, 0, 255, 0.3);
 }
 
