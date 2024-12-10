@@ -58,31 +58,32 @@ navToggle.addEventListener('click', () => {
 });
 
 // Navbar background change on scroll
+let scrollTimeout;
 window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-    } else {
-        navbar.style.background = 'transparent';
+    if (!scrollTimeout) {
+        scrollTimeout = setTimeout(() => {
+            const navbar = document.getElementById('navbar');
+            navbar.style.background = window.scrollY > 50 ? 
+                'rgba(10, 10, 10, 0.95)' : 'transparent';
+            scrollTimeout = null;
+        }, 100); // Throttle to run max once every 100ms
     }
-});
+}, { passive: true }); // Add passive flag for better scroll performance
 
 // Add animation to elements when they come into view
-const observerOptions = {
-    threshold: 0.2
-};
+const animatedElements = document.querySelectorAll('.skill-category, .project-card, .cert-card, .content-card');
+if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    }, { threshold: 0.1 }); // Reduced threshold for earlier animation
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.skill-category, .project-card, .cert-card').forEach(el => {
-    observer.observe(el);
-});
+    animatedElements.forEach(el => observer.observe(el));
+}
 
 // Theme Toggle
 const themeToggle = document.getElementById('themeToggle');
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     particlesJS('particles-js', {
         particles: {
             number: {
-                value: 80,
+                value: 40, // Reduced from 80
                 density: {
                     enable: true,
                     value_area: 800
@@ -129,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 random: false
             },
             size: {
-                value: 3,
+                value: 2, // Reduced from 3
                 random: true
             },
             line_linked: {
@@ -141,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             move: {
                 enable: true,
-                speed: 2,
+                speed: 1.5, // Reduced from 2
                 direction: 'none',
                 random: false,
                 straight: false,
@@ -259,6 +260,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         });
+    }
+});
+
+// Optimize modal event listeners
+const modalHandler = (e) => {
+    const modal = e.target.closest('.blog-modal, .project-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+};
+
+// Use event delegation for modal events
+document.body.addEventListener('click', (e) => {
+    if (e.target.classList.contains('read-more')) {
+        const postId = e.target.getAttribute('data-post-id');
+        const modal = document.getElementById(`post-${postId}`);
+        if (modal) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+    } else if (e.target.classList.contains('close-modal') || 
+               e.target.classList.contains('blog-modal') || 
+               e.target.classList.contains('project-modal')) {
+        modalHandler(e);
     }
 });
 
