@@ -471,8 +471,3 @@ class Terminal {
     }
 }
 
-// Initialize terminal when document is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const terminal = new Terminal('terminal-content');
-});
-
