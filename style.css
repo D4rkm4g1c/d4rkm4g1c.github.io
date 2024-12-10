@@ -1401,3 +1401,97 @@ body.light-mode::before {
     line-height: 1.6;
 }
 
+/* Certification Section Styling */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.cert-card {
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden; /* This will contain the glowing effect */
+}
+
+/* Update the glowing border effect */
+.cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent,
+        var(--primary-color),
+        var(--secondary-color),
+        var(--primary-color),
+        transparent
+    );
+    animation: glow-line 3s linear infinite;
+    z-index: 1; /* Ensure it stays above the background but below content */
+}
+
+/* Add a container for the content to ensure it stays above the glow effect */
+.cert-content {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.cert-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--glow-purple);
+    position: relative;
+    z-index: 2;
+}
+
+/* Update animation to stay within bounds */
+@keyframes glow-line {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Ensure badges stay above the glow effect */
+.cert-badges {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+}
+
+.cert-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    background: rgba(157, 0, 255, 0.1);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.cert-badge.active {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-primary);
+}
