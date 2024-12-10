@@ -73,8 +73,7 @@ body {
     height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                url('path-to-your-background-image.jpg') center/cover;
+    background: var(--background-dark);
 }
 
 .hero-content {
@@ -933,6 +932,7 @@ body.light-mode::before {
     max-width: 800px;
     margin: 0 auto;
     overflow: hidden;
+    height: 400px;
 }
 
 .terminal-header {
@@ -953,6 +953,9 @@ body.light-mode::before {
     width: 12px;
     height: 12px;
     border-radius: 50%;
+}
+
+.terminal-buttons span:nth-child(1) {
     background: #ff5f56;
 }
 
@@ -964,475 +967,35 @@ body.light-mode::before {
     background: #27c93f;
 }
 
+.terminal-title {
+    color: var(--text-secondary);
+    font-family: 'Fira Code', monospace;
+}
+
 .terminal-content {
     padding: 1.5rem;
     font-family: 'Fira Code', monospace;
     line-height: 1.6;
-}
-
-.command-line {
-    display: flex;
-    gap: 0.8rem;
-    margin: 1rem 0;
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
-}
-
-.prompt {
-    color: var(--primary-color);
-}
-
-.command {
-    color: var(--text-primary);
-}
-
-.command.typing {
-    animation: typing 3s steps(30, end);
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid var(--primary-color);
-}
-
-.response, .response-item {
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
-    animation-delay: 0.5s;
-}
-
-.response-item {
-    margin: 0.5rem 0 0.5rem 1rem;
-}
-
-.response-item:nth-child(2) {
-    animation-delay: 0.7s;
-}
-
-.response-item:nth-child(3) {
-    animation-delay: 0.9s;
-}
-
-/* Particle Background Styling */
-#particles-js {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* Animations */
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Updated Terminal Styles */
-.terminal-content {
-    padding: 1.5rem;
-    font-family: 'Fira Code', monospace;
-    line-height: 1.6;
-}
-
-.command-line {
-    display: flex;
-    gap: 0.8rem;
-    margin: 1rem 0;
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
-}
-
-.response, .response-item {
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
-    animation-delay: 0.5s;
-}
-
-.response-item {
-    margin: 0.5rem 0 0.5rem 1rem;
-}
-
-.response-item:nth-child(2) {
-    animation-delay: 0.7s;
-}
-
-.response-item:nth-child(3) {
-    animation-delay: 0.9s;
-}
-
-/* Updated Certification Styles */
-.cert-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
-}
-
-.cert-card {
-    background: rgba(26, 26, 26, 0.8);
-    border: 1px solid var(--primary-color);
-    border-radius: 8px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(5px);
-    transition: var(--transition);
-}
-
-.cert-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--secondary-color);
-    box-shadow: 
-        0 0 20px var(--glow-purple),
-        0 0 30px var(--glow-blue);
-}
-
-.cert-icon {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-.cert-icon i {
-    filter: drop-shadow(0 0 10px var(--glow-purple));
-}
-
-.cert-content h3 {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-    text-align: center;
-}
-
-.cert-content p {
-    color: var(--text-secondary);
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.cert-badges {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.cert-badge {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.cert-badge i {
-    font-size: 1rem;
-}
-
-.cert-badge.active {
-    background: linear-gradient(45deg, #27c93f, #1a9c2f);
-}
-
-.cert-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent,
-        var(--primary-color),
-        var(--secondary-color),
-        var(--primary-color),
-        transparent
-    );
-    animation: glow-line 3s linear infinite;
-}
-
-@keyframes glow-line {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-/* Security Content Section Styling */
-.security-content {
-    padding: 5rem 0;
-}
-
-.content-filters {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-}
-
-.filter-btn {
-    background: rgba(26, 26, 26, 0.8);
-    border: 1px solid var(--primary-color);
-    color: var(--text-primary);
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: var(--transition);
-    font-family: 'Fira Code', monospace;
-}
-
-.filter-btn:hover, .filter-btn.active {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    border-color: transparent;
-    box-shadow: 0 0 15px var(--glow-purple);
-}
-
-.content-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
-}
-
-.content-card {
-    background: rgba(26, 26, 26, 0.8);
-    border: 1px solid var(--primary-color);
-    border-radius: 8px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(5px);
-    transition: var(--transition);
-    animation: fadeIn 0.5s ease forwards;
-}
-
-.content-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--secondary-color);
-    box-shadow: 
-        0 0 20px var(--glow-purple),
-        0 0 30px var(--glow-blue);
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.card-meta {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.tag {
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-family: 'Fira Code', monospace;
-}
-
-.tag.ctf {
-    background: linear-gradient(45deg, #ff4646, #ff7676);
-}
-
-.tag.blog {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-}
-
-.tag.difficulty {
-    background: linear-gradient(45deg, #ffa500, #ff6b00);
-}
-
-.tag.topic {
-    background: linear-gradient(45deg, #00b4d8, #0077b6);
-}
-
-.reading-time {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.content-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-}
-
-.preview-text {
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-}
-
-.date {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.read-more {
-    background: transparent;
-    border: none;
-    color: var(--secondary-color);
-    cursor: pointer;
-    font-family: 'Fira Code', monospace;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: var(--transition);
-}
-
-.read-more:hover {
-    color: var(--primary-color);
-    text-shadow: 0 0 10px var(--glow-purple);
-}
-
-.read-more i {
-    transition: transform 0.3s ease;
-}
-
-.read-more:hover i {
-    transform: translateX(5px);
-}
-
-/* Security Research Section Styling */
-.research-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
-}
-
-.research-card {
-    background: rgba(26, 26, 26, 0.8);
-    border: 1px solid var(--primary-color);
-    border-radius: 8px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(5px);
-    transition: var(--transition);
-}
-
-.research-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--secondary-color);
-    box-shadow: 
-        0 0 20px var(--glow-purple),
-        0 0 30px var(--glow-blue);
-}
-
-.research-card .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.research-card .tag {
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-family: 'Fira Code', monospace;
-}
-
-.tag.research {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-}
-
-.tag.vuln {
-    background: linear-gradient(45deg, #ff4646, #ff7676);
-}
-
-.research-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-}
-
-.research-card .preview-text {
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.research-card .card-footer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 1rem;
-}
-
-.status-badge {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-primary);
-    font-family: 'Fira Code', monospace;
-}
-
-.card-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent,
-        var(--primary-color),
-        var(--secondary-color),
-        var(--primary-color),
-        transparent
-    );
-    animation: glow-line 3s linear infinite;
-}
-
-@keyframes glow-line {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-/* Terminal Enhancements */
-.terminal-content {
-    height: 300px;
+    height: calc(100% - 45px);
     overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) var(--background-dark);
 }
 
-.terminal-content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.terminal-content::-webkit-scrollbar-track {
-    background: var(--background-dark);
-}
-
-.terminal-content::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 4px;
+/* Add glow effect to terminal */
+.terminal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent,
+        var(--primary-color),
+        var(--secondary-color),
+        var(--primary-color),
+        transparent
+    );
+    animation: glow-line 3s linear infinite;
 }
 
 .command-line {
