@@ -155,10 +155,10 @@ document.addEventListener('DOMContentLoaded', function() {
     particlesJS('particles-js', {
         particles: {
             number: {
-                value: 40, // Reduced from 80
+                value: 20,  // Reduced from 40
                 density: {
                     enable: true,
-                    value_area: 800
+                    value_area: 1000  // Increased area
                 }
             },
             color: {
@@ -168,23 +168,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 type: 'circle'
             },
             opacity: {
-                value: 0.5,
+                value: 0.3,  // Reduced opacity
                 random: false
             },
             size: {
-                value: 2, // Reduced from 3
+                value: 1,  // Reduced size
                 random: true
             },
             line_linked: {
                 enable: true,
-                distance: 150,
-                color: '#00e5ff',
-                opacity: 0.4,
+                distance: 200,  // Increased distance
+                opacity: 0.2,   // Reduced opacity
                 width: 1
             },
             move: {
                 enable: true,
-                speed: 1.5, // Reduced from 2
+                speed: 1,    // Reduced speed
                 direction: 'none',
                 random: false,
                 straight: false,
@@ -193,24 +192,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
         interactivity: {
-            detect_on: 'canvas',
+            detect_on: 'window',  // Changed from 'canvas' for better mobile performance
             events: {
                 onhover: {
-                    enable: true,
-                    mode: 'grab'
+                    enable: false  // Disabled hover effects
                 },
                 resize: true
-            },
-            modes: {
-                grab: {
-                    distance: 140,
-                    line_linked: {
-                        opacity: 1
-                    }
-                }
             }
         },
-        retina_detect: true
+        retina_detect: false  // Disabled retina detection
     });
 });
 
