@@ -1,14 +1,16 @@
 // Add this at the top of your script.js
 console.log('Script loaded');
 
+let terminalInstance = null; // Global variable to track terminal instance
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded');
     const terminalElement = document.getElementById('terminal-content');
     console.log('Terminal element:', terminalElement);
-    if (terminalElement) {
-        const terminal = new Terminal('terminal-content');
-    } else {
-        console.error('Terminal element not found');
+    
+    // Only create a new terminal if one doesn't exist
+    if (terminalElement && !terminalInstance) {
+        terminalInstance = new Terminal('terminal-content');
     }
 });
 
@@ -330,6 +332,12 @@ document.body.addEventListener('click', (e) => {
 
 class Terminal {
     constructor(containerId) {
+        // Check if an instance already exists
+        if (terminalInstance) {
+            console.warn('Terminal instance already exists');
+            return terminalInstance;
+        }
+
         this.container = document.getElementById(containerId);
         this.commandHistory = [];
         this.historyIndex = -1;
@@ -352,7 +360,6 @@ class Terminal {
             ]}
         ];
         
-        // Clear any existing content and start fresh
         this.init();
     }
 
@@ -421,9 +428,6 @@ class Terminal {
         const responseElement = document.createElement('div');
         responseElement.className = 'response';
         
-        // Clear any existing content first
-        responseElement.innerHTML = '';
-        
         if (Array.isArray(response)) {
             response.forEach(line => {
                 const lineElement = document.createElement('div');
@@ -455,18 +459,18 @@ class Terminal {
         // Type command
         await this.typeCommand(command.command, commandLine.querySelector('.command-text'));
         
-        // Remove cursor
+        // Remove cursor and add response
         cursor.remove();
         
         // Add response after small delay
         await new Promise(resolve => setTimeout(resolve, 500));
-        
-        // Create and append response only once
-        const responseElement = this.createResponse(command.response);
-        this.container.appendChild(responseElement);
+        this.container.appendChild(this.createResponse(command.response));
         
         // Scroll to bottom
         this.container.scrollTop = this.container.scrollHeight;
+        
+        // Store in history
+        this.commandHistory.push(command.command);
         
         this.isTyping = false;
         
