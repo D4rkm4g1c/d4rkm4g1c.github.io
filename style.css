@@ -1414,3 +1414,66 @@ body.light-mode::before {
     100% { transform: translateX(100%); }
 }
 
+/* Terminal Enhancements */
+.terminal-content {
+    height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--background-dark);
+}
+
+.terminal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+    background: var(--background-dark);
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.command-line {
+    display: flex;
+    gap: 0.8rem;
+    margin: 0.5rem 0;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+
+.cursor-blink {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: var(--secondary-color);
+    margin-left: 4px;
+    animation: blink 1s infinite;
+}
+
+.command-text {
+    color: #A9B7C6;  /* Light blue for commands */
+}
+
+.argument {
+    color: #CC7832;  /* Orange for arguments */
+}
+
+.parameter {
+    color: #6A8759;  /* Green for parameters */
+}
+
+.response {
+    color: #BBB529;  /* Yellow for responses */
+}
+
+.error {
+    color: #FF6B68;  /* Red for errors */
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
