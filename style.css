@@ -74,16 +74,21 @@ body {
     display: flex;
     align-items: center;
     background: var(--background-dark);
+    padding-bottom: 100px;
 }
 
 .hero-content {
     text-align: center;
+    margin-top: -50px;
 }
 
 .hero h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     color: var(--primary-color);
+    text-shadow: 
+        0 0 10px var(--glow-purple),
+        0 0 20px var(--glow-blue);
 }
 
 .typewriter {
