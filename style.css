@@ -522,16 +522,10 @@ body::before {
         linear-gradient(rgba(10,10,10,0.97), rgba(10,10,10,0.97)),
         repeating-linear-gradient(
             transparent 0%,
-            rgba(157, 0, 255, 0.1) 1px,
-            transparent 2px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(0, 229, 255, 0.1) 1px,
-            transparent 2px
+            rgba(157, 0, 255, 0.05) 2px,
+            transparent 4px
         );
-    background-size: 100% 100%, 30px 30px, 30px 30px;
+    background-size: 100% 100%, 50px 50px;
     z-index: -1;
 }
 

@@ -150,60 +150,6 @@ themeToggle.addEventListener('click', () => {
     icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Particle.js configuration
-    particlesJS('particles-js', {
-        particles: {
-            number: {
-                value: 20,  // Reduced from 40
-                density: {
-                    enable: true,
-                    value_area: 1000  // Increased area
-                }
-            },
-            color: {
-                value: '#9d00ff'
-            },
-            shape: {
-                type: 'circle'
-            },
-            opacity: {
-                value: 0.3,  // Reduced opacity
-                random: false
-            },
-            size: {
-                value: 1,  // Reduced size
-                random: true
-            },
-            line_linked: {
-                enable: true,
-                distance: 200,  // Increased distance
-                opacity: 0.2,   // Reduced opacity
-                width: 1
-            },
-            move: {
-                enable: true,
-                speed: 1,    // Reduced speed
-                direction: 'none',
-                random: false,
-                straight: false,
-                out_mode: 'out',
-                bounce: false
-            }
-        },
-        interactivity: {
-            detect_on: 'window',  // Changed from 'canvas' for better mobile performance
-            events: {
-                onhover: {
-                    enable: false  // Disabled hover effects
-                },
-                resize: true
-            }
-        },
-        retina_detect: false  // Disabled retina detection
-    });
-});
-
 // Blog Modal Functionality
 document.querySelectorAll('.read-more').forEach(button => {
     button.addEventListener('click', () => {
