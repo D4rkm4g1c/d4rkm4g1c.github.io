@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="error-page">
+    <div id="particles-js"></div>
+    <div class="error-container">
+        <div class="glitch" data-text="404">404</div>
+        <div class="error-terminal">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="terminal-title">error.log</div>
+            </div>
+            <div class="terminal-content">
+                <div class="error-message">
+                    <span class="prompt">$</span> ERROR: Page not found
+                    <br>
+                    <span class="prompt">$</span> LOCATION: /{{ request_path }}
+                    <br>
+                    <span class="prompt">$</span> SUGGESTION: Try these instead...
+                    <br>
+                    <div class="suggestions">
+                        <a href="/">→ Home</a>
+                        <a href="/blog">→ Blog</a>
+                        <a href="/contact">→ Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
