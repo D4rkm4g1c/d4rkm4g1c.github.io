@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body class="error-page">
     <div id="particles-js"></div>
     <div class="error-container">
+        <div class="error-emoji">¯\_(ツ)_/¯</div>
         <div class="glitch" data-text="404">404</div>
         <div class="error-terminal">
             <div class="terminal-header">
@@ -23,16 +25,42 @@
                     <br>
                     <span class="prompt">$</span> LOCATION: /{{ request_path }}
                     <br>
+                    <span class="prompt">$</span> STATUS: <span class="typing-animation">Looking for your page...</span>
+                    <br>
                     <span class="prompt">$</span> SUGGESTION: Try these instead...
                     <br>
                     <div class="suggestions">
-                        <a href="/">→ Home</a>
-                        <a href="/blog">→ Blog</a>
-                        <a href="/contact">→ Contact</a>
+                        <a href="/" class="button-effect">→ Home</a>
+                        <a href="/blog" class="button-effect">→ Blog</a>
+                        <a href="/contact" class="button-effect">→ Contact</a>
+                    </div>
+                    <div class="search-container">
+                        <span class="prompt">$</span> Search site:
+                        <input type="text" id="search-input" placeholder="Type to search...">
+                        <button onclick="searchSite()" class="button-effect">Search</button>
                     </div>
                 </div>
             </div>
         </div>
+        <button onclick="history.back()" class="back-button button-effect">← Go Back</button>
     </div>
+
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80 },
+                color: { value: '#ffffff' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                move: { enable: true, speed: 2 }
+            }
+        });
+
+        function searchSite() {
+            const query = document.getElementById('search-input').value;
+            window.location.href = `/search?q=${encodeURIComponent(query)}`;
+        }
+    </script>
 </body>
 </html> 

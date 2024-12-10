@@ -365,19 +365,17 @@ h2 {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.2rem;
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     color: var(--text-primary);
     text-decoration: none;
-    border-radius: 8px;
-    font-family: 'Fira Code', monospace;
-    font-size: 1.1rem;
+    border-radius: 4px;
     transition: var(--transition);
     box-shadow: 0 0 15px var(--glow-purple);
 }
 
 .github-link:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: 
         0 0 20px var(--glow-purple),
         0 0 30px var(--glow-blue);
@@ -1038,5 +1036,58 @@ body.light-mode::before {
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
+}
+
+.error-emoji {
+    font-size: 2em;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+.button-effect {
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+.button-effect:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.typing-animation {
+    border-right: 2px solid #fff;
+    animation: typing 1s steps(40) infinite;
+}
+
+.search-container {
+    margin-top: 20px;
+}
+
+#search-input {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 5px 10px;
+    color: #fff;
+    margin: 0 10px;
+}
+
+.back-button {
+    margin-top: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes typing {
+    0% { border-color: transparent }
+    50% { border-color: #fff }
+    100% { border-color: transparent }
 }
 
