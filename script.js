@@ -352,6 +352,7 @@ class Terminal {
             ]}
         ];
         
+        // Clear any existing content and start fresh
         this.init();
     }
 
@@ -420,6 +421,9 @@ class Terminal {
         const responseElement = document.createElement('div');
         responseElement.className = 'response';
         
+        // Clear any existing content first
+        responseElement.innerHTML = '';
+        
         if (Array.isArray(response)) {
             response.forEach(line => {
                 const lineElement = document.createElement('div');
@@ -451,18 +455,18 @@ class Terminal {
         // Type command
         await this.typeCommand(command.command, commandLine.querySelector('.command-text'));
         
-        // Remove cursor and add response
+        // Remove cursor
         cursor.remove();
         
         // Add response after small delay
         await new Promise(resolve => setTimeout(resolve, 500));
-        this.container.appendChild(this.createResponse(command.response));
+        
+        // Create and append response only once
+        const responseElement = this.createResponse(command.response);
+        this.container.appendChild(responseElement);
         
         // Scroll to bottom
         this.container.scrollTop = this.container.scrollHeight;
-        
-        // Store in history
-        this.commandHistory.push(command.command);
         
         this.isTyping = false;
         
