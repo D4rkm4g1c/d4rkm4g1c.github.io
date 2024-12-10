@@ -71,19 +71,44 @@ window.addEventListener('scroll', () => {
 }, { passive: true }); // Add passive flag for better scroll performance
 
 // Add animation to elements when they come into view
-const animatedElements = document.querySelectorAll('.skill-category, .project-card, .cert-card, .content-card');
-if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-                observer.unobserve(entry.target); // Stop observing once animated
-            }
-        });
-    }, { threshold: 0.1 }); // Reduced threshold for earlier animation
+document.addEventListener('DOMContentLoaded', function() {
+    const animatedElements = document.querySelectorAll(
+        '.skill-category, .project-card, .cert-card, .content-card, .research-card, .coming-soon-card'
+    );
 
-    animatedElements.forEach(el => observer.observe(el));
-}
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Add animation class when element is 10% visible
+                if (entry.isIntersecting) {
+                    // Small delay for smoother loading
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                    }, 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        });
+
+        // Observe elements in chunks to improve performance
+        let delay = 0;
+        animatedElements.forEach((el, index) => {
+            if (index % 3 === 0) {
+                delay += 50; // Stagger the observations
+            }
+            setTimeout(() => {
+                observer.observe(el);
+            }, delay);
+        });
+    } else {
+        // Fallback for browsers that don't support IntersectionObserver
+        animatedElements.forEach(el => el.classList.add('animate'));
+    }
+});
 
 // Theme Toggle
 const themeToggle = document.getElementById('themeToggle');
