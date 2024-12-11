@@ -748,3 +748,122 @@ h2, h3, .code-font {
     gap: 2rem;
     padding: 2rem;
 }
+
+/* Projects Section */
+.projects {
+    padding: 6rem 0;
+    background: var(--background-dark);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.project-card {
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--glow-purple);
+}
+
+.project-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Fira Code', monospace;
+}
+
+.project-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-tags span {
+    padding: 0.2rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    background: rgba(157, 0, 255, 0.2);
+    color: var(--text-primary);
+}
+
+.project-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.project-links {
+    margin-top: 1.5rem;
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-family: 'Fira Code', monospace;
+    transition: var(--transition);
+}
+
+.github-link:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--glow-purple);
+}
+
+.tech-details {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(157, 0, 255, 0.2);
+}
+
+.tech-details h4 {
+    color: var(--primary-color);
+    font-family: 'Fira Code', monospace;
+    margin-bottom: 1rem;
+}
+
+.tech-details h5 {
+    color: var(--secondary-color);
+    font-family: 'Fira Code', monospace;
+    margin: 1rem 0;
+}
+
+.structure pre {
+    background: rgba(10, 10, 10, 0.5);
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    color: var(--text-secondary);
+    margin: 1rem 0;
+}
+
+.tech-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tech-details li {
+    color: var(--text-secondary);
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.tech-details li::before {
+    content: '>';
+    color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+    font-family: 'Fira Code', monospace;
+}
