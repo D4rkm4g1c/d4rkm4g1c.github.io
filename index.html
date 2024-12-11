@@ -189,18 +189,20 @@
     <section id="tools" class="tools">
         <div class="container">
             <h2>Tools & Scripts</h2>
-            <div class="coming-soon-grid">
-                <div class="coming-soon-card">
-                    <div class="card-header">
-                        <span class="tag">Python</span>
-                        <span class="tag">Security</span>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-tags">
+                        <span>Python</span>
+                        <span>Security</span>
                     </div>
                     <h3>Security Tools</h3>
-                    <p>Custom security tools and automation scripts...</p>
-                    <a href="https://github.com/D4rkm4g1c" class="github-link">
-                        <i class="fab fa-github"></i> View on GitHub
-                    </a>
+                    <p class="tool-description">Custom security tools and automation scripts...</p>
                     <div class="status-badge">Coming Soon</div>
+                    <div class="tool-links">
+                        <a href="https://github.com/D4rkm4g1c" class="github-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -263,14 +265,17 @@
     <section id="resources" class="resources">
         <div class="container">
             <h2>Learning Resources</h2>
-            <div class="coming-soon-grid">
-                <div class="coming-soon-card">
-                    <div class="card-header">
-                        <span class="tag">Guide</span>
-                    </div>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-tag">Guide</div>
                     <h3>Security Learning Path</h3>
-                    <p>Curated resources for cybersecurity learning...</p>
+                    <p class="resource-description">Curated resources for cybersecurity learning...</p>
                     <div class="status-badge">Coming Soon</div>
+                    <div class="resource-meta">
+                        <span class="resource-type">
+                            <i class="fas fa-book"></i> Learning Guide
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -280,14 +285,17 @@
     <section id="talks" class="talks">
         <div class="container">
             <h2>Talks & Events</h2>
-            <div class="coming-soon-grid">
-                <div class="coming-soon-card">
-                    <div class="card-header">
-                        <span class="tag">Conference</span>
-                    </div>
+            <div class="talks-grid">
+                <div class="talk-card">
+                    <div class="talk-tag">Conference</div>
                     <h3>Upcoming Presentations</h3>
-                    <p>Security conference talks and event appearances...</p>
+                    <p class="talk-description">Security conference talks and event appearances...</p>
                     <div class="status-badge">Coming Soon</div>
+                    <div class="talk-meta">
+                        <span class="talk-type">
+                            <i class="fas fa-microphone"></i> Conference Talk
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -315,60 +323,70 @@
             <div class="project-grid">
                 <!-- Project Card -->
                 <div class="project-card">
-                    <div class="project-tags">
-                        <span>Python</span>
-                        <span>Azure</span>
-                        <span>Security</span>
-                        <span>Automation</span>
-                    </div>
-                    
-                    <h3>Azure Security Scanner</h3>
-                    
-                    <div class="project-description">
-                        A comprehensive security assessment tool for Azure environments. Automatically identifies misconfigurations, vulnerabilities, and security risks across your Azure resources with interactive HTML reporting.
-                    </div>
-                    
-                    <div class="key-features">
-                        <h4>Key Features</h4>
-                        <ul>
-                            <li>Automated Security Scanning</li>
-                            <li>Interactive HTML Reports</li>
-                            <li>YAML-based Scan Definitions</li>
-                            <li>Real-time Progress Tracking</li>
-                        </ul>
-                    </div>
+                    <div class="card-inner">
+                        <!-- Front of card -->
+                        <div class="card-front">
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>Azure</span>
+                                <span>Security</span>
+                            </div>
+                            
+                            <h3>Azure Security Scanner</h3>
+                            
+                            <div class="project-description">
+                                A comprehensive security assessment tool for Azure environments. Automatically identifies misconfigurations, vulnerabilities, and security risks.
+                            </div>
+                            
+                            <div class="key-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Automated Security Scanning</li>
+                                    <li>Interactive HTML Reports</li>
+                                    <li>YAML-based Scan Definitions</li>
+                                </ul>
+                            </div>
 
-                    <div class="tech-details">
-                        <h4>Technical Specifications</h4>
-                        <div class="structure">
-                            <h5>Project Structure</h5>
-                            <pre>
+                            <div class="flip-prompt">
+                                <i class="fas fa-sync"></i> Click for Technical Details
+                            </div>
+                        </div>
+
+                        <!-- Back of card -->
+                        <div class="card-back">
+                            <div class="tech-details">
+                                <h4>Technical Specifications</h4>
+                                <div class="structure">
+                                    <h5>Project Structure</h5>
+                                    <pre>
 AzureSecuritySuite/
 ├── AzureSecuritySuite.py
 ├── report_generator.py
-├── version.txt
-├── requirements.txt
 └── scans/
-    ├── virtual_machines.yaml
-    ├── storage_accounts.yaml
-    └── app_services.yaml</pre>
-                        </div>
-                        
-                        <div class="tech-stack">
-                            <h5>Tech Stack</h5>
-                            <ul>
-                                <li>Python 3.6+</li>
-                                <li>Azure CLI</li>
-                                <li>Steampipe</li>
-                                <li>PyYAML</li>
-                            </ul>
-                        </div>
-                    </div>
+    └── *.yaml</pre>
+                                </div>
+                                
+                                <div class="tech-stack">
+                                    <h5>Tech Stack</h5>
+                                    <ul>
+                                        <li>Python 3.6+</li>
+                                        <li>Azure CLI</li>
+                                        <li>Steampipe</li>
+                                        <li>PyYAML</li>
+                                    </ul>
+                                </div>
+                            </div>
 
-                    <div class="project-links">
-                        <a href="https://github.com/D4rkm4g1c/AzureSecuritySuite" class="github-link" target="_blank">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
+                            <div class="project-links">
+                                <a href="https://github.com/D4rkm4g1c/AzureSecuritySuite" class="github-link" target="_blank">
+                                    <i class="fab fa-github"></i> View on GitHub
+                                </a>
+                            </div>
+
+                            <div class="flip-prompt">
+                                <i class="fas fa-sync"></i> Back to Overview
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

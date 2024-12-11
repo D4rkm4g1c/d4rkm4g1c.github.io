@@ -469,19 +469,19 @@ section h2 {
     text-shadow: 0 0 10px var(--glow-purple);
 }
 
-/* Tools Section */
+/* Tools & Scripts Section */
 .tools {
     padding: 6rem 0;
 }
 
-.coming-soon-grid {
+.tools-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     padding: 2rem;
 }
 
-.coming-soon-card {
+.tool-card {
     background: rgba(26, 26, 26, 0.95);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
@@ -490,9 +490,37 @@ section h2 {
     position: relative;
 }
 
-.coming-soon-card:hover {
+.tool-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px var(--glow-purple);
+}
+
+.tool-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tool-tags span {
+    padding: 0.2rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    background: rgba(157, 0, 255, 0.2);
+    color: var(--text-primary);
+}
+
+.tool-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Fira Code', monospace;
+}
+
+.tool-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 .status-badge {
@@ -506,6 +534,10 @@ section h2 {
     color: var(--text-primary);
 }
 
+.tool-links {
+    margin-top: auto;
+}
+
 .github-link {
     display: inline-flex;
     align-items: center;
@@ -513,13 +545,16 @@ section h2 {
     color: var(--secondary-color);
     text-decoration: none;
     font-family: 'Fira Code', monospace;
-    margin-top: 1rem;
     transition: var(--transition);
 }
 
 .github-link:hover {
     color: var(--primary-color);
     text-shadow: 0 0 10px var(--glow-purple);
+}
+
+.github-link i {
+    font-size: 1.2rem;
 }
 
 /* Research Section */
@@ -658,9 +693,119 @@ section h2 {
     background: var(--background-light);
 }
 
-/* Talks Section */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.resource-card {
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--glow-purple);
+}
+
+.resource-tag {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    background: rgba(157, 0, 255, 0.2);
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.resource-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Fira Code', monospace;
+}
+
+.resource-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.resource-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    color: var(--text-secondary);
+}
+
+/* Talks & Events Section */
 .talks {
     padding: 6rem 0;
+}
+
+.talks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.talk-card {
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.talk-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--glow-purple);
+}
+
+.talk-tag {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    background: rgba(157, 0, 255, 0.2);
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.talk-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Fira Code', monospace;
+}
+
+.talk-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.talk-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.talk-meta i, .resource-meta i {
+    color: var(--secondary-color);
 }
 
 /* Contact Section */
@@ -763,25 +908,42 @@ h2, h3, .code-font {
 }
 
 .project-card {
+    perspective: 1000px;
+    height: 450px; /* Fixed height for consistency */
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.project-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
     background: rgba(26, 26, 26, 0.95);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
-    padding: 2rem;
-    transition: var(--transition);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px var(--glow-purple);
+.card-back {
+    transform: rotateY(180deg);
 }
 
-.project-card h3 {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    font-family: 'Fira Code', monospace;
-}
-
+/* Front Card Styles */
 .project-tags {
     display: flex;
     gap: 0.5rem;
@@ -797,103 +959,26 @@ h2, h3, .code-font {
 }
 
 .project-description {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-}
-
-.project-links {
-    margin-top: 1.5rem;
-}
-
-.github-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--secondary-color);
-    text-decoration: none;
-    font-family: 'Fira Code', monospace;
-    transition: var(--transition);
-}
-
-.github-link:hover {
-    color: var(--primary-color);
-    text-shadow: 0 0 10px var(--glow-purple);
-}
-
-.tech-details {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(157, 0, 255, 0.2);
-}
-
-.tech-details h4 {
-    color: var(--primary-color);
-    font-family: 'Fira Code', monospace;
-    margin-bottom: 1rem;
-}
-
-.tech-details h5 {
-    color: var(--secondary-color);
-    font-family: 'Fira Code', monospace;
-    margin: 1rem 0;
-}
-
-.structure pre {
-    background: rgba(10, 10, 10, 0.5);
-    padding: 1rem;
-    border-radius: 4px;
-    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    line-height: 1.5;
     color: var(--text-secondary);
     margin: 1rem 0;
 }
 
-.tech-details ul {
-    list-style: none;
-    padding: 0;
-}
-
-.tech-details li {
-    color: var(--text-secondary);
-    margin: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.tech-details li::before {
-    content: '>';
-    color: var(--secondary-color);
-    position: absolute;
-    left: 0;
-    font-family: 'Fira Code', monospace;
-}
-
-/* Additional styles for the enhanced project card */
 .key-features {
-    margin: 1.5rem 0;
-    padding: 1rem;
-    background: rgba(157, 0, 255, 0.1);
-    border-radius: 4px;
-}
-
-.key-features h4 {
-    color: var(--primary-color);
-    font-family: 'Fira Code', monospace;
-    margin-bottom: 0.8rem;
+    margin-top: auto;
 }
 
 .key-features ul {
     list-style: none;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.5rem;
 }
 
 .key-features li {
     color: var(--text-secondary);
-    padding-left: 1.5rem;
+    padding-left: 1.2rem;
     position: relative;
+    margin: 0.5rem 0;
 }
 
 .key-features li::before {
@@ -904,15 +989,32 @@ h2, h3, .code-font {
     font-family: 'Fira Code', monospace;
 }
 
-.project-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
+/* Back Card Styles */
+.tech-details {
+    flex: 1;
+}
+
+.structure pre {
+    background: rgba(10, 10, 10, 0.5);
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    margin: 1.5rem 0;
+    margin: 0.5rem 0;
 }
 
 .tech-stack ul {
+    list-style: none;
+    padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
+}
+
+/* Flip Prompt */
+.flip-prompt {
+    text-align: center;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-top: 1rem;
 }
