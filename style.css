@@ -179,11 +179,12 @@ h2 {
 }
 
 .project-card {
-    background: rgba(26, 26, 26, 0.8);
+    background: transparent;
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     perspective: 1000px;
-    min-height: 400px;
+    height: 400px;
+    width: 100%;
 }
 
 .card-inner {
@@ -202,23 +203,34 @@ h2 {
 
 .card-front, .card-back {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     padding: 2rem;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     background: rgba(26, 26, 26, 0.95);
     border-radius: 8px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .card-front {
     z-index: 2;
+    transform: rotateY(0deg);
 }
 
 .card-back {
+    background: rgba(26, 26, 26, 0.95);
     transform: rotateY(180deg);
-    display: flex;
-    flex-direction: column;
+}
+
+.card-back .tech-details {
+    opacity: 1;
+    visibility: visible;
+}
+
+.card-front *, .card-back * {
+    backface-visibility: visible;
 }
 
 .project-tags {
@@ -278,6 +290,7 @@ h2 {
     font-size: 0.9rem;
     white-space: pre-wrap;
     word-break: break-word;
+    margin-bottom: 1rem;
 }
 
 .tech-details ul {
@@ -304,8 +317,6 @@ h2 {
 }
 
 .tech-details {
-    margin: 1.5rem 0;
-    flex-grow: 1;
     width: 100%;
     height: auto;
 }
