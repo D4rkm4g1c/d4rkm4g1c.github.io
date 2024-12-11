@@ -195,29 +195,6 @@ if (document.querySelector('.glitch')) {
     }, 2000);
 }
 
-function showProjectModal(projectId) {
-    const modal = document.getElementById(`${projectId}-modal`);
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
-
-// Close modal when clicking the close button
-document.querySelectorAll('.close-modal').forEach(button => {
-    button.addEventListener('click', () => {
-        const modal = button.closest('.project-modal');
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    });
-});
-
-// Close modal when clicking outside
-window.addEventListener('click', (e) => {
-    if (e.target.classList.contains('project-modal')) {
-        e.target.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-});
-
 // Content Filtering
 document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.filter-btn');

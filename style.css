@@ -208,24 +208,21 @@ h2 {
     padding: 2rem;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
+    background: rgba(26, 26, 26, 0.95);
+    border-radius: 8px;
 }
 
 .card-front {
-    background: rgba(26, 26, 26, 0.8);
-    border-radius: 8px;
     z-index: 2;
 }
 
 .card-back {
-    background: rgba(26, 26, 26, 0.95);
     transform: rotateY(180deg);
-    border-radius: 8px;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
 }
 
 .project-tags span {
@@ -286,6 +283,8 @@ h2 {
 .tech-details {
     margin: 1.5rem 0;
     flex-grow: 1;
+    width: 100%;
+    height: auto;
 }
 
 .tech-details pre {
@@ -294,9 +293,8 @@ h2 {
     border-radius: 4px;
     font-family: 'Fira Code', monospace;
     font-size: 0.9rem;
-    overflow-x: auto;
-    border: 1px solid var(--primary-color);
-    color: var(--text-primary);
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 /* Project tags */
