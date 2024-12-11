@@ -179,12 +179,10 @@ h2 {
 }
 
 .project-card {
-    background: transparent;
-    border: 1px solid var(--primary-color);
-    border-radius: 8px;
-    perspective: 1000px;
-    height: 400px;
+    position: relative;
     width: 100%;
+    height: 400px;
+    perspective: 1500px;
 }
 
 .card-inner {
@@ -192,9 +190,8 @@ h2 {
     width: 100%;
     height: 100%;
     text-align: left;
-    transition: transform 0.6s;
+    transition: transform 0.8s;
     transform-style: preserve-3d;
-    cursor: pointer;
 }
 
 .project-card:hover .card-inner {
@@ -203,34 +200,29 @@ h2 {
 
 .card-front, .card-back {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     padding: 2rem;
-    background: rgba(26, 26, 26, 0.95);
-    border-radius: 8px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    overflow-y: auto;
 }
 
 .card-front {
-    z-index: 2;
     transform: rotateY(0deg);
 }
 
 .card-back {
-    background: rgba(26, 26, 26, 0.95);
     transform: rotateY(180deg);
 }
 
-.card-back .tech-details {
-    opacity: 1;
-    visibility: visible;
-}
-
-.card-front *, .card-back * {
-    backface-visibility: visible;
+/* Content Styles */
+.card-front h3, .card-back h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
 }
 
 .project-tags {
@@ -248,27 +240,28 @@ h2 {
     color: var(--text-primary);
 }
 
-.project-links {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 1rem;
+.tech-details {
+    margin-top: 1rem;
 }
 
-.github-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.2rem;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    color: var(--text-primary);
-    text-decoration: none;
+.tech-details pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
     border-radius: 4px;
-    transition: all 0.3s ease;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    margin: 1rem 0;
 }
 
-.github-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px var(--glow-purple);
+.tech-details ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.tech-details li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
 }
 
 .card-flip-hint {
@@ -279,7 +272,6 @@ h2 {
     text-align: center;
     color: var(--text-secondary);
     font-size: 0.9rem;
-    opacity: 0.7;
 }
 
 .tech-details pre {
