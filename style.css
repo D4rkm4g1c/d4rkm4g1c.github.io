@@ -1770,3 +1770,157 @@ body.light-mode::before {
 .animate {
     animation: none;
 }
+
+/* Base Card Styles */
+.card-base {
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Card Hover Effect */
+.card-hover:hover {
+    transform: translateY(-3px);
+    border-color: var(--secondary-color);
+    box-shadow: 0 5px 15px var(--glow-purple);
+}
+
+/* Project Card Specific Styles */
+.project-card {
+    height: 400px;
+    perspective: 1000px;
+    background: transparent;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.project-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+}
+
+.card-front {
+    transform: rotateY(0deg);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+/* Grid Layouts */
+.grid-base {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.content-grid,
+.project-grid,
+.cert-grid,
+.skills-grid,
+.research-grid,
+.coming-soon-grid {
+    @extend .grid-base;
+}
+
+/* Tech Details (Unified) */
+.tech-details {
+    margin-top: 1rem;
+}
+
+.tech-details pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    margin: 1rem 0;
+    border: 1px solid var(--primary-color);
+}
+
+/* Tags and Badges */
+.tag,
+.cert-badge {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+}
+
+/* Links and Buttons */
+.github-link,
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.github-link:hover,
+.read-more:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--glow-purple);
+}
+
+/* Optimized Animations */
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px var(--glow-purple),
+                     0 0 20px var(--glow-purple);
+    }
+    to {
+        text-shadow: 0 0 20px var(--glow-purple),
+                     0 0 30px var(--glow-purple);
+    }
+}
+
+/* Remove redundant animations */
+.animate {
+    animation: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+    
+    .typewriter {
+        font-size: 1.5rem;
+    }
+    
+    .card-base {
+        padding: 1rem;
+    }
+}
