@@ -184,6 +184,7 @@ h2 {
     border-radius: 8px;
     perspective: 1000px;
     min-height: 400px;
+    overflow: hidden;
 }
 
 .card-inner {
@@ -207,17 +208,66 @@ h2 {
     padding: 2rem;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .card-front {
     background: rgba(26, 26, 26, 0.8);
     border-radius: 8px;
+    z-index: 2;
 }
 
 .card-back {
     background: rgba(26, 26, 26, 0.95);
     transform: rotateY(180deg);
     border-radius: 8px;
+    z-index: 1;
+}
+
+.project-tags span {
+    display: inline-block;
+    margin: 0.2rem;
+    padding: 0.3rem 0.6rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+}
+
+.card-flip-hint {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.project-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.github-link, .details-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.github-link:hover, .details-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--glow-purple);
 }
 
 /* Project content styling */
