@@ -436,3 +436,46 @@ const cleanup = {
 // Clean up when navigating away
 window.addEventListener('unload', () => cleanup.clearAll());
 
+const phrases = [
+    'Cybersecurity Consultant',
+    'Security Researcher',
+    'Python Developer',
+    'Cloud Security Expert'
+];
+
+let currentPhraseIndex = 0;
+let currentText = '';
+let isDeleting = false;
+let typingSpeed = 100; // Base typing speed
+
+function typeEffect() {
+    const currentPhrase = phrases[currentPhraseIndex];
+    
+    if (isDeleting) {
+        currentText = currentPhrase.substring(0, currentText.length - 1);
+        typingSpeed = 50; // Faster when deleting
+    } else {
+        currentText = currentPhrase.substring(0, currentText.length + 1);
+        typingSpeed = 100; // Normal speed when typing
+    }
+
+    document.querySelector('.typewriter').textContent = currentText;
+
+    if (!isDeleting && currentText === currentPhrase) {
+        // Start deleting after a pause
+        typingSpeed = 2000; // Pause at the end of phrase
+        isDeleting = true;
+    } else if (isDeleting && currentText === '') {
+        isDeleting = false;
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        typingSpeed = 500; // Pause before starting new phrase
+    }
+
+    setTimeout(typeEffect, typingSpeed);
+}
+
+// Start the typing effect when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(typeEffect, 1000); // Initial delay before starting
+});
+

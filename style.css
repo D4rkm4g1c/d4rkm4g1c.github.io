@@ -1018,3 +1018,31 @@ h2, h3, .code-font {
     font-size: 0.9rem;
     margin-top: 1rem;
 }
+
+/* Typewriter Effect */
+.typewriter-container {
+    display: inline-block;
+    font-family: 'Fira Code', monospace;
+    background: rgba(10, 10, 10, 0.7);
+    padding: 1rem 2rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    box-shadow: 0 0 15px var(--glow-purple);
+}
+
+.typewriter {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    letter-spacing: 0.15em;
+}
+
+.cursor {
+    color: var(--secondary-color);
+    text-shadow: 0 0 10px var(--glow-blue);
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { opacity: 1 }
+    50% { opacity: 0 }
+}
