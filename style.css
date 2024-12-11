@@ -867,3 +867,52 @@ h2, h3, .code-font {
     left: 0;
     font-family: 'Fira Code', monospace;
 }
+
+/* Additional styles for the enhanced project card */
+.key-features {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(157, 0, 255, 0.1);
+    border-radius: 4px;
+}
+
+.key-features h4 {
+    color: var(--primary-color);
+    font-family: 'Fira Code', monospace;
+    margin-bottom: 0.8rem;
+}
+
+.key-features ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.key-features li {
+    color: var(--text-secondary);
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.key-features li::before {
+    content: '>';
+    color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+    font-family: 'Fira Code', monospace;
+}
+
+.project-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 1.5rem 0;
+}
+
+.tech-stack ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+}

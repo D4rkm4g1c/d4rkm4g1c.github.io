@@ -315,47 +315,60 @@
             <div class="project-grid">
                 <!-- Project Card -->
                 <div class="project-card">
-                    <div class="card-inner">
-                        <!-- Front of card -->
-                        <div class="card-front">
-                            <h3>Project Name</h3>
-                            <div class="project-tags">
-                                <span>Python</span>
-                                <span>Security</span>
-                                <span>Automation</span>
-                            </div>
-                            <p>A brief description of the project and its main features. This is a placeholder text that will be replaced with actual project details.</p>
-                            <div class="project-links">
-                                <a href="#" class="github-link" target="_blank">
-                                    <i class="fab fa-github"></i> View on GitHub
-                                </a>
-                            </div>
-                            <div class="card-flip-hint">Click to see Technical Details</div>
+                    <div class="project-tags">
+                        <span>Python</span>
+                        <span>Azure</span>
+                        <span>Security</span>
+                        <span>Automation</span>
+                    </div>
+                    
+                    <h3>Azure Security Scanner</h3>
+                    
+                    <div class="project-description">
+                        A comprehensive security assessment tool for Azure environments. Automatically identifies misconfigurations, vulnerabilities, and security risks across your Azure resources with interactive HTML reporting.
+                    </div>
+                    
+                    <div class="key-features">
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li>Automated Security Scanning</li>
+                            <li>Interactive HTML Reports</li>
+                            <li>YAML-based Scan Definitions</li>
+                            <li>Real-time Progress Tracking</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-details">
+                        <h4>Technical Specifications</h4>
+                        <div class="structure">
+                            <h5>Project Structure</h5>
+                            <pre>
+AzureSecuritySuite/
+├── AzureSecuritySuite.py
+├── report_generator.py
+├── version.txt
+├── requirements.txt
+└── scans/
+    ├── virtual_machines.yaml
+    ├── storage_accounts.yaml
+    └── app_services.yaml</pre>
                         </div>
-                        <!-- Back of card -->
-                        <div class="card-back">
-                            <h4>Technical Specifications</h4>
-                            <div class="tech-details">
-                                <div class="structure">
-                                    <h5>Project Structure</h5>
-                                    <pre>
-ProjectName/
-├── main.py
-├── utils.py
-├── config.yaml
-└── requirements.txt
-                                    </pre>
-                                </div>
-                                <div class="requirements">
-                                    <h5>Tech Stack</h5>
-                                    <ul>
-                                        <li>Python 3.8+</li>
-                                        <li>PyYAML</li>
-                                        <li>Requests</li>
-                                    </ul>
-                                </div>
-                            </div>
+                        
+                        <div class="tech-stack">
+                            <h5>Tech Stack</h5>
+                            <ul>
+                                <li>Python 3.6+</li>
+                                <li>Azure CLI</li>
+                                <li>Steampipe</li>
+                                <li>PyYAML</li>
+                            </ul>
                         </div>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://github.com/D4rkm4g1c/AzureSecuritySuite" class="github-link" target="_blank">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
                     </div>
                 </div>
             </div>
