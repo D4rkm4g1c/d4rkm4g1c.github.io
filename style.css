@@ -256,3 +256,103 @@ body {
     80% { transform: translate(2px, -2px) }
     100% { transform: translate(0) }
 }
+
+/* Section Headers */
+section h2 {
+    font-size: 3rem;
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 3rem;
+    font-family: 'Fira Code', monospace;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px var(--glow-purple);
+}
+
+/* About Section */
+.about {
+    padding: 6rem 0;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-text {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.about-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.about-list li {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.about-list li::before {
+    content: '•';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+/* Skills Section */
+.skills {
+    padding: 6rem 0;
+    background: var(--background-light);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.skill-category {
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--glow-purple);
+}
+
+.skill-category h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Fira Code', monospace;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category li {
+    margin: 0.8rem 0;
+    color: var(--text-primary);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.skill-category li::before {
+    content: '>';
+    color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+    font-family: 'Fira Code', monospace;
+}
