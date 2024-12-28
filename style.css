@@ -37,7 +37,8 @@ body {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -144,10 +145,9 @@ body {
 }
 
 .terminal {
-    background: rgba(10, 10, 10, 0.95);
-    border-radius: 8px;
+    background: var(--background-light);
     border: 1px solid var(--primary-color);
-    box-shadow: 0 0 20px var(--glow-purple);
+    border-radius: 8px;
     max-width: 800px;
     margin: 0 auto;
     overflow: hidden;
@@ -278,6 +278,7 @@ section h2 {
 .about-content {
     max-width: 800px;
     margin: 0 auto;
+    padding: 2rem;
 }
 
 .about-text {
@@ -307,18 +308,19 @@ section h2 {
 /* Skills Section */
 .skills {
     padding: 6rem 0;
-    background: var(--background-light);
 }
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 2rem;
 }
 
 .skill-category {
-    background: rgba(26, 26, 26, 0.95);
+    background: var(--background-light);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     padding: 2rem;
@@ -357,6 +359,19 @@ section h2 {
     font-family: 'Fira Code', monospace;
 }
 
+/* Add responsive design for smaller screens */
+@media (max-width: 1024px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Content Filters */
 .content-filters {
     display: flex;
@@ -391,12 +406,14 @@ section h2 {
 
 /* Content Cards */
 .content-card {
-    background: rgba(26, 26, 26, 0.95);
+    background: var(--background-light);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     padding: 2rem;
     transition: var(--transition);
     position: relative;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 .content-card:hover {
@@ -475,19 +492,23 @@ section h2 {
 }
 
 .tools-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    padding: 2rem;
 }
 
 .tool-card {
-    background: rgba(26, 26, 26, 0.95);
+    background: var(--background-light);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     padding: 2rem;
     transition: var(--transition);
     position: relative;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 .tool-card:hover {
@@ -560,23 +581,25 @@ section h2 {
 /* Research Section */
 .research {
     padding: 6rem 0;
-    background: var(--background-light);
 }
 
 .research-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 2rem;
 }
 
 .research-card {
-    background: rgba(26, 26, 26, 0.95);
+    background: var(--background-light);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     padding: 2rem;
     transition: var(--transition);
     position: relative;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 .research-card:hover {
@@ -633,14 +656,13 @@ section h2 {
 }
 
 .cert-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 2rem;
 }
 
 .cert-card {
-    background: rgba(26, 26, 26, 0.95);
+    background: var(--background-light);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     padding: 2rem;
@@ -648,6 +670,8 @@ section h2 {
     display: flex;
     align-items: center;
     gap: 2rem;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 .cert-card:hover {
@@ -690,23 +714,25 @@ section h2 {
 /* Resources Section */
 .resources {
     padding: 6rem 0;
-    background: var(--background-light);
 }
 
 .resources-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 2rem;
 }
 
 .resource-card {
-    background: rgba(26, 26, 26, 0.95);
+    background: var(--background-light);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     padding: 2rem;
     transition: var(--transition);
     position: relative;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 .resource-card:hover {
@@ -752,19 +778,23 @@ section h2 {
 }
 
 .talks-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    padding: 2rem;
 }
 
 .talk-card {
-    background: rgba(26, 26, 26, 0.95);
+    background: var(--background-light);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     padding: 2rem;
     transition: var(--transition);
     position: relative;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 .talk-card:hover {
@@ -811,21 +841,20 @@ section h2 {
 /* Contact Section */
 .contact {
     padding: 6rem 0;
-    background: var(--background-light);
 }
 
 .contact-content {
     max-width: 800px;
     margin: 0 auto;
-    text-align: center;
+    padding: 2rem;
 }
 
 .contact-info {
-    background: rgba(26, 26, 26, 0.95);
+    background: var(--background-light);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     padding: 2rem;
-    margin-top: 2rem;
+    text-align: center;
 }
 
 /* Footer */
@@ -864,6 +893,20 @@ footer {
 section {
     position: relative;
     overflow: hidden;
+    padding: 5rem 0;
+}
+
+section:first-of-type {
+    padding-top: 0;
+}
+
+section:not(:last-child) {
+    border-bottom: 1px solid rgba(157, 0, 255, 0.1);
+}
+
+section {
+    transition: opacity 0.3s ease;
+    scroll-margin-top: 80px;
 }
 
 /* Consistent card styling across all sections */
@@ -1045,4 +1088,167 @@ h2, h3, .code-font {
 @keyframes blink {
     from, to { opacity: 1 }
     50% { opacity: 0 }
+}
+
+/* Content Page Styles */
+.content-page {
+    padding-top: 80px;
+    min-height: 100vh;
+    background: var(--background-dark);
+}
+
+.back-nav {
+    padding: 1rem 0;
+}
+
+.back-link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.back-link:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--glow-purple);
+}
+
+.page-header {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    font-family: 'Fira Code', monospace;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px var(--glow-purple);
+}
+
+.content-coming-soon {
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.content-coming-soon .terminal {
+    margin: 0;
+}
+
+.command {
+    color: var(--secondary-color);
+    margin: 0.5rem 0;
+}
+
+.response {
+    color: var(--text-secondary);
+    margin: 0.5rem 0;
+}
+
+.content-card, .research-card, .resource-card, .talk-card {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.content-card::after, .research-card::after, .resource-card::after, .talk-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.content-card:hover::after, .research-card:hover::after, 
+.resource-card:hover::after, .talk-card:hover::after {
+    opacity: 0.1;
+}
+
+/* Ensure links within cards don't trigger double clicks */
+.content-card a, .research-card a, .resource-card a, .talk-card a {
+    position: relative;
+    z-index: 2;
+}
+
+/* Base card/box styling */
+.card-base, 
+.terminal,
+.content-card,
+.project-card .card-front,
+.project-card .card-back,
+.tool-card,
+.research-card,
+.cert-card,
+.resource-card,
+.talk-card,
+.contact-info,
+.skill-category {
+    background: var(--background-light);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 15px var(--glow-purple);
+}
+
+/* Card headers */
+.card-header,
+.terminal-header {
+    background: var(--background-dark);
+    margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+
+/* Card content */
+.card-content,
+.terminal-content,
+.project-content,
+.tool-content,
+.research-content {
+    background: var(--background-light);
+    margin: 0;
+    padding: 0;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Hover effects */
+.card-base:hover,
+.tool-card:hover,
+.research-card:hover,
+.cert-card:hover,
+.resource-card:hover,
+.talk-card:hover,
+.skill-category:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px var(--glow-purple);
+}
+
+/* Preserve specific card heights where needed */
+.project-card {
+    height: 450px;
+}
+
+.terminal {
+    height: 400px;
+}
+
+/* Ensure content stays within borders */
+.card-content,
+.terminal-content {
+    overflow-y: auto;
+    max-height: calc(100% - 45px);
 }

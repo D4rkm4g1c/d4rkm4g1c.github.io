@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Navigation - Reorganized menu items -->
     <nav id="navbar">
         <div class="container">
             <div class="logo-container">
@@ -34,13 +34,12 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#security-content">Content</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#tools">Tools</a></li>
                 <li><a href="#research">Research</a></li>
-                <li><a href="#certifications">Certs</a></li>
-                <li><a href="#resources">Resources</a></li>
+                <li><a href="#content">Blog</a></li>
                 <li><a href="#talks">Talks</a></li>
+                <li><a href="#certifications">Certs</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -128,111 +127,6 @@
         </div>
     </section>
 
-    <!-- Security Content Section (Blog + CTF Writeups) -->
-    <section id="security-content" class="security-content">
-        <div class="container">
-            <h2>Security Content</h2>
-            <div class="content-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="ctf">CTF Writeups</button>
-                <button class="filter-btn" data-filter="blog">Blog Posts</button>
-            </div>
-            <div class="content-grid">
-                <!-- CTF Writeup Card Example -->
-                <article class="content-card ctf">
-                    <div class="card-header">
-                        <div class="card-meta">
-                            <span class="tag ctf">HTB</span>
-                            <span class="tag difficulty">Medium</span>
-                        </div>
-                        <div class="reading-time">
-                            <i class="far fa-clock"></i>
-                            <span>15 min read</span>
-                        </div>
-                    </div>
-                    <h3>Machine Name Walkthrough</h3>
-                    <p class="preview-text">A detailed walkthrough of compromising the Machine Name box...</p>
-                    <div class="card-footer">
-                        <span class="date"><i class="far fa-calendar"></i> Coming Q1 2024</span>
-                        <button class="read-more">
-                            Read More <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
-
-                <!-- Blog Post Card Example -->
-                <article class="content-card blog">
-                    <div class="card-header">
-                        <div class="card-meta">
-                            <span class="tag blog">Security</span>
-                            <span class="tag topic">Cloud</span>
-                        </div>
-                        <div class="reading-time">
-                            <i class="far fa-clock"></i>
-                            <span>5 min read</span>
-                        </div>
-                    </div>
-                    <h3>Azure Security Best Practices</h3>
-                    <p class="preview-text">Essential security configurations for Azure environments...</p>
-                    <div class="card-footer">
-                        <span class="date"><i class="far fa-calendar"></i> Coming Soon</span>
-                        <button class="read-more">
-                            Read More <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools & Scripts Section -->
-    <section id="tools" class="tools">
-        <div class="container">
-            <h2>Tools & Scripts</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="tool-tags">
-                        <span>Python</span>
-                        <span>Security</span>
-                    </div>
-                    <h3>Security Tools</h3>
-                    <p class="tool-description">Custom security tools and automation scripts...</p>
-                    <div class="status-badge">Coming Soon</div>
-                    <div class="tool-links">
-                        <a href="https://github.com/D4rkm4g1c" class="github-link">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Security Research Section -->
-    <section id="research" class="research">
-        <div class="container">
-            <h2>Security Research</h2>
-            <div class="research-grid">
-                <div class="research-card">
-                    <div class="card-header">
-                        <div class="card-meta">
-                            <span class="tag research">Research</span>
-                            <span class="tag vuln">War-Stories</span>
-                        </div>
-                    </div>
-                    <h3>Vulnerability Research</h3>
-                    <p class="preview-text">Interesting security findings and vulnerability research...</p>
-                    <div class="card-footer">
-                        <span class="status-badge">
-                            <i class="fas fa-clock"></i>
-                            Coming Soon
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Certifications Section -->
     <section id="certifications" class="certifications">
         <div class="container">
@@ -256,61 +150,6 @@
                             </span>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Learning Resources Section -->
-    <section id="resources" class="resources">
-        <div class="container">
-            <h2>Learning Resources</h2>
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <div class="resource-tag">Guide</div>
-                    <h3>Security Learning Path</h3>
-                    <p class="resource-description">Curated resources for cybersecurity learning...</p>
-                    <div class="status-badge">Coming Soon</div>
-                    <div class="resource-meta">
-                        <span class="resource-type">
-                            <i class="fas fa-book"></i> Learning Guide
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Talks & Events Section -->
-    <section id="talks" class="talks">
-        <div class="container">
-            <h2>Talks & Events</h2>
-            <div class="talks-grid">
-                <div class="talk-card">
-                    <div class="talk-tag">Conference</div>
-                    <h3>Upcoming Presentations</h3>
-                    <p class="talk-description">Security conference talks and event appearances...</p>
-                    <div class="status-badge">Coming Soon</div>
-                    <div class="talk-meta">
-                        <span class="talk-type">
-                            <i class="fas fa-microphone"></i> Conference Talk
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p>Check out my work and connect with me on GitHub!</p>
-                    <a href="https://github.com/D4rkm4g1c" target="_blank" class="github-link">
-                        <i class="fab fa-github"></i> D4rkm4g1c
-                    </a>
                 </div>
             </div>
         </div>
@@ -388,6 +227,166 @@ AzureSecuritySuite/
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & Scripts Section -->
+    <section id="tools" class="tools">
+        <div class="container">
+            <h2>Tools & Scripts</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-tags">
+                        <span>Python</span>
+                        <span>Security</span>
+                    </div>
+                    <h3>Security Tools</h3>
+                    <p class="tool-description">Custom security tools and automation scripts...</p>
+                    <div class="status-badge">Coming Soon</div>
+                    <div class="tool-links">
+                        <a href="https://github.com/D4rkm4g1c" class="github-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Content Section -->
+    <section id="content" class="security-content">
+        <div class="container">
+            <h2>Security Content</h2>
+            <div class="content-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ctf">CTF Writeups</button>
+                <button class="filter-btn" data-filter="blog">Blog Posts</button>
+            </div>
+            <div class="content-grid">
+                <!-- CTF Writeup Card Example -->
+                <article class="content-card ctf" onclick="window.location.href='/content/ctf/'">
+                    <div class="card-header">
+                        <div class="card-meta">
+                            <span class="tag ctf">HTB</span>
+                            <span class="tag difficulty">Medium</span>
+                        </div>
+                        <div class="reading-time">
+                            <i class="far fa-clock"></i>
+                            <span>15 min read</span>
+                        </div>
+                    </div>
+                    <h3>Machine Name Walkthrough</h3>
+                    <p class="preview-text">A detailed walkthrough of compromising the Machine Name box...</p>
+                    <div class="card-footer">
+                        <span class="date"><i class="far fa-calendar"></i> Coming Q1 2024</span>
+                        <a href="/content/ctf/" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post Card Example -->
+                <article class="content-card blog">
+                    <div class="card-header">
+                        <div class="card-meta">
+                            <span class="tag blog">Security</span>
+                            <span class="tag topic">Cloud</span>
+                        </div>
+                        <div class="reading-time">
+                            <i class="far fa-clock"></i>
+                            <span>5 min read</span>
+                        </div>
+                    </div>
+                    <h3>Azure Security Best Practices</h3>
+                    <p class="preview-text">Essential security configurations for Azure environments...</p>
+                    <div class="card-footer">
+                        <span class="date"><i class="far fa-calendar"></i> Coming Soon</span>
+                        <button class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Research Section -->
+    <section id="research" class="research">
+        <div class="container">
+            <h2>Security Research</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="card-header">
+                        <div class="card-meta">
+                            <span class="tag research">Research</span>
+                            <span class="tag vuln">War-Stories</span>
+                        </div>
+                    </div>
+                    <h3>Vulnerability Research</h3>
+                    <p class="preview-text">Interesting security findings and vulnerability research...</p>
+                    <div class="card-footer">
+                        <span class="status-badge">
+                            <i class="fas fa-clock"></i>
+                            Coming Soon
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Resources Section -->
+    <section id="resources" class="resources">
+        <div class="container">
+            <h2>Learning Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-tag">Guide</div>
+                    <h3>Security Learning Path</h3>
+                    <p class="resource-description">Curated resources for cybersecurity learning...</p>
+                    <div class="status-badge">Coming Soon</div>
+                    <div class="resource-meta">
+                        <span class="resource-type">
+                            <i class="fas fa-book"></i> Learning Guide
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Talks & Events Section -->
+    <section id="talks" class="talks">
+        <div class="container">
+            <h2>Talks & Events</h2>
+            <div class="talks-grid">
+                <div class="talk-card">
+                    <div class="talk-tag">Conference</div>
+                    <h3>Upcoming Presentations</h3>
+                    <p class="talk-description">Security conference talks and event appearances...</p>
+                    <div class="status-badge">Coming Soon</div>
+                    <div class="talk-meta">
+                        <span class="talk-type">
+                            <i class="fas fa-microphone"></i> Conference Talk
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p>Check out my work and connect with me on GitHub!</p>
+                    <a href="https://github.com/D4rkm4g1c" target="_blank" class="github-link">
+                        <i class="fab fa-github"></i> D4rkm4g1c
+                    </a>
                 </div>
             </div>
         </div>
