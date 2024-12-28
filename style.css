@@ -1252,3 +1252,17 @@ h2, h3, .code-font {
     overflow-y: auto;
     max-height: calc(100% - 45px);
 }
+
+.tryhackme-badge {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tryhackme-badge h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
