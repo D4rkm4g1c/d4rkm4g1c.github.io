@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D4rkm4g1c | Security Content</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>D4rkm4g1c | CTF Write-ups</title>
+    <link rel="stylesheet" href="../../style.css">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -12,7 +12,32 @@
 <body>
     <!-- Navigation -->
     <nav id="navbar">
-        <!-- Copy your existing navbar here -->
+        <div class="container">
+            <div class="logo-container">
+                <picture>
+                    <source srcset="images/logo.webp" type="image/webp">
+                    <source srcset="images/logo.svg" type="image/svg+xml">
+                    <img src="images/logo.png" alt="D4rkm4g1c Logo" class="logo-image" width="50" height="50" loading="lazy">
+                </picture>
+                <span class="logo-text">D4rkm4g1c</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#content">Blog</a></li>
+                <li><a href="#talks">Talks</a></li>
+                <li><a href="#certifications">Certs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
     <main class="content-page">
@@ -24,37 +49,75 @@
             </div>
             
             <header class="page-header">
-                <h1>Security Content</h1>
+                <h1>CTF Write-ups</h1>
+                <p class="subtitle">Detailed walkthroughs of TryHackMe rooms and HackTheBox machines</p>
             </header>
 
-            <div class="content-coming-soon">
-                <div class="terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-buttons">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="terminal-title">status.sh</div>
+            <div class="platform-sections">
+                <!-- TryHackMe Section -->
+                <section class="platform-section thm-section">
+                    <h2>
+                        <img src="../images/thm-logo.png" alt="TryHackMe Logo" class="platform-logo">
+                        TryHackMe Write-ups
+                    </h2>
+                    <div class="writeups-grid">
+                        <article class="writeup-card">
+                            <div class="writeup-header">
+                                <h3>RootMe</h3>
+                                <span class="difficulty easy">Easy</span>
+                            </div>
+                            <p class="writeup-description">A beginner level room focusing on basic privilege escalation techniques.</p>
+                            <div class="writeup-tags">
+                                <span class="tag">Linux</span>
+                                <span class="tag">PrivEsc</span>
+                                <span class="tag">Web</span>
+                            </div>
+                            <div class="writeup-meta">
+                                <span class="completion-date">Completed: Jan 15, 2024</span>
+                                <a href="thm/rootme.html" class="read-more">Read Write-up →</a>
+                            </div>
+                        </article>
                     </div>
-                    <div class="terminal-content">
-                        <p class="command">$ ./check-status.sh</p>
-                        <p class="response">Preparing security content...</p>
-                        <p class="command">$ eta</p>
-                        <p class="response">Coming Soon™</p>
+                </section>
+
+                <!-- HackTheBox Section -->
+                <section class="platform-section htb-section">
+                    <h2>
+                        <img src="../images/htb-logo.png" alt="HackTheBox Logo" class="platform-logo">
+                        HackTheBox Write-ups
+                    </h2>
+                    <div class="writeups-grid">
+                        <article class="writeup-card">
+                            <div class="writeup-header">
+                                <h3>Keeper</h3>
+                                <span class="difficulty medium">Medium</span>
+                            </div>
+                            <p class="writeup-description">A challenging box involving web application vulnerabilities and credential harvesting.</p>
+                            <div class="writeup-tags">
+                                <span class="tag">Linux</span>
+                                <span class="tag">Web App</span>
+                                <span class="tag">Keepass</span>
+                            </div>
+                            <div class="writeup-meta">
+                                <span class="completion-date">Completed: Feb 1, 2024</span>
+                                <a href="htb/keeper.html" class="read-more">Read Write-up →</a>
+                            </div>
+                        </article>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
     </main>
 
     <footer>
-        <!-- Copy your existing footer here -->
+        <div class="container">
+            <p>&copy; 2024 D4rkm4g1c. All rights reserved.</p>
+        </div>
     </footer>
 
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
         <i class="fas fa-moon"></i>
     </button>
-    <script src="../script.js"></script>
+    <script src="../../script.js"></script>
 </body>
 </html> 

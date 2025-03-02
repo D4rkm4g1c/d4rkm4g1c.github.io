@@ -1313,3 +1313,122 @@ h2, h3, .code-font {
         transform: translateX(100%);
     }
 }
+
+/* Platform Sections */
+.platform-section {
+    margin-bottom: 4rem;
+}
+
+.platform-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.platform-logo {
+    height: 40px;
+    width: auto;
+    filter: drop-shadow(0 0 8px var(--glow-purple));
+}
+
+.writeups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.writeup-card {
+    background: var(--background-light);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: var(--transition);
+}
+
+.writeup-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--glow-purple);
+}
+
+.writeup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.writeup-header h3 {
+    color: var(--primary-color);
+    font-family: 'Fira Code', monospace;
+    margin: 0;
+}
+
+.difficulty {
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.difficulty.easy {
+    background: rgba(39, 174, 96, 0.2);
+    color: #27ae60;
+}
+
+.difficulty.medium {
+    background: rgba(241, 196, 15, 0.2);
+    color: #f1c40f;
+}
+
+.difficulty.hard {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.writeup-description {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.writeup-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.writeup-tags .tag {
+    background: rgba(157, 0, 255, 0.2);
+    color: var(--text-primary);
+    padding: 0.2rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.writeup-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.completion-date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.read-more {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-family: 'Fira Code', monospace;
+    transition: var(--transition);
+}
+
+.read-more:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--glow-purple);
+}
