@@ -1,1 +1,105 @@
- 
+/* Write-up Specific Styles */
+.writeup {
+    padding-top: 4rem;
+}
+
+.writeup-header {
+    margin-bottom: 2rem;
+}
+
+.writeup-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.writeup-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Code Blocks */
+pre {
+    background: var(--background-dark);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+th, td {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+th {
+    background: var(--background-dark);
+    font-weight: 600;
+}
+
+/* Lists */
+ul, ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+/* Sections */
+section {
+    margin: 2rem 0;
+}
+
+h2 {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-top: 2rem;
+}
+
+/* Dark Mode Adjustments */
+@media (prefers-color-scheme: dark) {
+    pre {
+        background: var(--dark-background-light);
+    }
+
+    th {
+        background: var(--dark-background-light);
+    }
+
+    td, th {
+        border-color: var(--dark-border);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .writeup {
+        padding-top: 0;
+    }
+
+    pre {
+        white-space: pre-wrap;
+        border: 1px solid var(--border);
+    }
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.9em;
+    }
+} 

