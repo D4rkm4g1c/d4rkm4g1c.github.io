@@ -1,12 +1,12 @@
 # 🎯 Linkvortex - HTB Machine
 **Category:** Miscellaneous  
-**Difficulty:** Medium  
+**Difficulty:** Easy  
 **Platform:** HackTheBox  
 **Release Date:** 2023  
 **Target IP:** 10.10.11.47
 
 ## 📝 Challenge Description
-A Ghost CMS instance with potential security misconfigurations and vulnerabilities that could lead to unauthorized access.
+A Ghost CMS instance with potential security misconfigurations and vulnerabilities that could lead to unauthorised access.
 
 ## 🔍 Reconnaissance
 

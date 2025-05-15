@@ -5,6 +5,43 @@ import { Terminal } from './terminal.js';
 
 let terminalInstance = null; // Global variable to track terminal instance
 
+// Masonry Layout Handler
+function initMasonryLayout() {
+    const grids = document.querySelectorAll('.masonry-grid');
+    
+    grids.forEach(grid => {
+        const items = grid.children;
+        let gridGap = parseInt(window.getComputedStyle(grid).gridRowGap);
+        let rowHeight = parseInt(window.getComputedStyle(grid).gridAutoRows);
+        
+        const resizeGridItem = (item) => {
+            const rowSpan = Math.ceil(
+                (item.getBoundingClientRect().height + gridGap) / 
+                (rowHeight + gridGap)
+            );
+            item.style.gridRowEnd = 'span ' + rowSpan;
+        };
+        
+        const resizeAllGridItems = () => {
+            Array.from(items).forEach(resizeGridItem);
+        };
+        
+        // Initial resize
+        resizeAllGridItems();
+        
+        // Resize on window resize
+        window.addEventListener('resize', resizeAllGridItems);
+        
+        // Resize when images load
+        Array.from(items).forEach(item => {
+            const images = item.getElementsByTagName('img');
+            Array.from(images).forEach(img => {
+                img.addEventListener('load', () => resizeGridItem(item));
+            });
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded');
     const terminalElement = document.getElementById('terminal-content');
@@ -20,6 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize event listeners
     initEventListeners();
+    
+    // Initialize masonry layout
+    initMasonryLayout();
 });
 
 // Typewriter effect initialization
@@ -258,7 +298,10 @@ const cleanup = {
 };
 
 // Clean up when navigating away
-window.addEventListener('unload', () => cleanup.clearAll());
+window.addEventListener('unload', () => {
+    resizeObserver.disconnect();
+    cleanup.clearAll();
+});
 
 const phrases = [
     'Cybersecurity Consultant',
@@ -301,5 +344,20 @@ function typeEffect() {
 // Start the typing effect when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(typeEffect, 1000); // Initial delay before starting
+});
+
+// Add resize observer for dynamic content
+const resizeObserver = new ResizeObserver(entries => {
+    entries.forEach(entry => {
+        const grid = entry.target.closest('.masonry-grid');
+        if (grid) {
+            initMasonryLayout();
+        }
+    });
+});
+
+// Observe all grid items
+document.querySelectorAll('.masonry-grid > *').forEach(item => {
+    resizeObserver.observe(item);
 });
 
