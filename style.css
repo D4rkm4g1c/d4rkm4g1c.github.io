@@ -257,14 +257,25 @@ body {
     100% { transform: translate(0) }
 }
 
+/* Section Layout */
+section {
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+section:not(:last-child) {
+    border-bottom: 1px solid rgba(157, 0, 255, 0.1);
+}
+
 /* Section Headers */
 section h2 {
     font-size: 2.5rem;
     color: var(--primary-color);
-    margin-bottom: 2rem;
     text-align: center;
+    margin-bottom: 3rem;
     position: relative;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
 }
 
 section h2::after {
@@ -273,10 +284,87 @@ section h2::after {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
+    width: 80px;
     height: 4px;
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     border-radius: 2px;
+}
+
+/* Grid Layouts */
+.grid-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin: 2rem 0;
+}
+
+/* Apply grid layout to specific sections */
+.skills-grid,
+.projects-grid,
+.tools-grid,
+.content-grid,
+.research-grid,
+.resources-grid,
+.talks-grid {
+    composes: grid-layout;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .grid-layout {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 4rem 0;
+    }
+
+    section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .grid-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Section Background Patterns */
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.03;
+    z-index: 0;
+    pointer-events: none;
+    background-image: 
+        linear-gradient(45deg, var(--primary-color) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--primary-color) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, var(--primary-color) 75%),
+        linear-gradient(-45deg, transparent 75%, var(--primary-color) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+section:nth-child(even)::before {
+    background-image: 
+        radial-gradient(var(--primary-color) 2px, transparent 2px),
+        radial-gradient(var(--secondary-color) 2px, transparent 2px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    opacity: 0.05;
 }
 
 /* About Section */
@@ -909,41 +997,64 @@ section:first-of-type {
     padding-top: 0;
 }
 
-section:not(:last-child) {
-    border-bottom: 1px solid rgba(157, 0, 255, 0.1);
-}
-
 section {
     transition: opacity 0.3s ease;
     scroll-margin-top: 80px;
 }
 
-/* Consistent card styling across all sections */
+/* Card Base Styles */
 .card-base {
-    --card-padding: 1.5rem;
+    --card-min-height: 350px;
+    --card-padding: 2rem;
     --card-radius: 12px;
-    --card-height: 320px;
+    --card-border: 1px solid rgba(157, 0, 255, 0.2);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     
     background: var(--background-light);
     border-radius: var(--card-radius);
     padding: var(--card-padding);
-    height: var(--card-height);
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: var(--card-min-height);
+    border: var(--card-border);
+    box-shadow: var(--card-shadow);
+    
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
     overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .card-base:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-color: var(--primary-color);
+    box-shadow: 0 8px 30px rgba(157, 0, 255, 0.2);
 }
 
-/* Apply card base to all card types */
+/* Card Header */
+.card-header {
+    margin: calc(-1 * var(--card-padding));
+    margin-bottom: var(--card-padding);
+    padding: 1.5rem var(--card-padding);
+    background: rgba(157, 0, 255, 0.05);
+    border-bottom: 1px solid rgba(157, 0, 255, 0.1);
+}
+
+/* Card Content */
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Card Footer */
+.card-footer {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(157, 0, 255, 0.1);
+}
+
+/* Apply consistent styling to all card types */
 .project-card,
 .cert-card,
 .tool-card,
@@ -953,576 +1064,52 @@ section {
 .talk-card,
 .writeup-card {
     composes: card-base;
-    margin-bottom: 2rem;
 }
 
-/* Grid Layouts */
-.project-grid,
-.cert-grid,
-.tools-grid,
-.content-grid,
-.research-grid,
-.resources-grid,
-.talks-grid,
-.writeups-grid {
+/* Grid Layout */
+.masonry-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 1rem 0;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+    padding: 2rem 0;
 }
 
-/* Card Header Styles */
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+/* Ensure consistent text styling */
+.card-title {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-family: 'Fira Code', monospace;
     margin-bottom: 1rem;
 }
 
-/* Card Tags */
-.card-tags,
-.project-tags,
-.writeup-tags,
-.tool-tags {
+.card-description {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Tags styling */
+.tags-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
 }
 
 .tag {
     background: rgba(157, 0, 255, 0.1);
     color: var(--primary-color);
-    padding: 0.25rem 0.75rem;
+    padding: 0.5rem 1rem;
     border-radius: 20px;
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .tag:hover {
     background: rgba(157, 0, 255, 0.2);
-    transform: translateY(-1px);
-}
-
-/* Card Content */
-.card-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card-description {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 1rem 0;
-}
-
-/* Card Footer */
-.card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Status Badge */
-.status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    background: rgba(0, 229, 255, 0.1);
-    color: var(--secondary-color);
-}
-
-/* Difficulty Badges */
-.difficulty {
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-}
-
-.difficulty.easy {
-    background: rgba(39, 174, 96, 0.1);
-    color: #27ae60;
-}
-
-.difficulty.medium {
-    background: rgba(241, 196, 15, 0.1);
-    color: #f1c40f;
-}
-
-.difficulty.hard {
-    background: rgba(231, 76, 60, 0.1);
-    color: #e74c3c;
-}
-
-/* Read More Link */
-.read-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.read-more:hover {
-    color: var(--secondary-color);
-    transform: translateX(5px);
-}
-
-/* Card Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate {
-    animation: fadeIn 0.5s ease forwards;
-}
-
-/* Platform Sections */
-.platform-section {
-    margin-bottom: 3rem;
-}
-
-.platform-section h2 {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    color: var(--primary-color);
-}
-
-.platform-logo {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .card-base {
-        --card-height: auto;
-        min-height: 280px;
-    }
-
-    .project-grid,
-    .cert-grid,
-    .tools-grid,
-    .content-grid,
-    .research-grid,
-    .resources-grid,
-    .talks-grid,
-    .writeups-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Section Spacing */
-section:nth-child(even) {
-    background: rgba(157, 0, 255, 0.05);
-}
-
-/* Container Max Width */
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-/* Projects Section */
-.projects {
-    padding: 6rem 0;
-    background: var(--background-dark);
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-}
-
-.project-card {
-    perspective: 1000px;
-    height: 450px; /* Fixed height for consistency */
-    cursor: pointer;
-}
-
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: left;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-.project-card:hover .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    background: rgba(26, 26, 26, 0.95);
-    border: 1px solid var(--primary-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.card-back {
-    transform: rotateY(180deg);
-}
-
-/* Front Card Styles */
-.project-tags {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.project-tags span {
-    padding: 0.2rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    background: rgba(157, 0, 255, 0.2);
-    color: var(--text-primary);
-}
-
-.project-description {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--text-secondary);
-    margin: 1rem 0;
-}
-
-.key-features {
-    margin-top: auto;
-}
-
-.key-features ul {
-    list-style: none;
-    padding: 0;
-}
-
-.key-features li {
-    color: var(--text-secondary);
-    padding-left: 1.2rem;
-    position: relative;
-    margin: 0.5rem 0;
-}
-
-.key-features li::before {
-    content: '>';
-    color: var(--secondary-color);
-    position: absolute;
-    left: 0;
-    font-family: 'Fira Code', monospace;
-}
-
-/* Back Card Styles */
-.tech-details {
-    flex: 1;
-}
-
-.structure pre {
-    background: rgba(10, 10, 10, 0.5);
-    padding: 0.8rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    margin: 0.5rem 0;
-}
-
-.tech-stack ul {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-}
-
-/* Flip Prompt */
-.flip-prompt {
-    text-align: center;
-    color: var(--secondary-color);
-    font-size: 0.9rem;
-    margin-top: 1rem;
-}
-
-/* Typewriter Effect */
-.typewriter-container {
-    display: inline-block;
-    font-family: 'Fira Code', monospace;
-    background: rgba(10, 10, 10, 0.7);
-    padding: 1rem 2rem;
-    border: 1px solid var(--primary-color);
-    border-radius: 4px;
-    box-shadow: 0 0 15px var(--glow-purple);
-}
-
-.typewriter {
-    color: var(--text-primary);
-    font-size: 1.5rem;
-    letter-spacing: 0.15em;
-}
-
-.cursor {
-    color: var(--secondary-color);
-    text-shadow: 0 0 10px var(--glow-blue);
-    animation: blink 0.75s step-end infinite;
-}
-
-@keyframes blink {
-    from, to { opacity: 1 }
-    50% { opacity: 0 }
-}
-
-/* Content Page Styles */
-.content-page {
-    padding-top: 80px;
-    min-height: 100vh;
-    background: var(--background-dark);
-}
-
-.back-nav {
-    padding: 1rem 0;
-}
-
-.back-link {
-    color: var(--secondary-color);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: var(--transition);
-}
-
-.back-link:hover {
-    color: var(--primary-color);
-    text-shadow: 0 0 10px var(--glow-purple);
-}
-
-.page-header {
-    text-align: center;
-    padding: 4rem 0;
-}
-
-.page-header h1 {
-    font-size: 3.5rem;
-    color: var(--primary-color);
-    font-family: 'Fira Code', monospace;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px var(--glow-purple);
-}
-
-.content-coming-soon {
-    max-width: 800px;
-    margin: 2rem auto;
-}
-
-.content-coming-soon .terminal {
-    margin: 0;
-}
-
-.command {
-    color: var(--secondary-color);
-    margin: 0.5rem 0;
-}
-
-.response {
-    color: var(--text-secondary);
-    margin: 0.5rem 0;
-}
-
-.content-card, .research-card, .resource-card, .talk-card {
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.content-card::after, .research-card::after, .resource-card::after, .talk-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.content-card:hover::after, .research-card:hover::after, 
-.resource-card:hover::after, .talk-card:hover::after {
-    opacity: 0.1;
-}
-
-/* Ensure links within cards don't trigger double clicks */
-.content-card a, .research-card a, .resource-card a, .talk-card a {
-    position: relative;
-    z-index: 2;
-}
-
-/* Base card/box styling */
-.card-base, 
-.terminal,
-.content-card,
-.project-card .card-front,
-.project-card .card-back,
-.tool-card,
-.research-card,
-.cert-card,
-.resource-card,
-.talk-card,
-.contact-info,
-.skill-category {
-    background: var(--background-light);
-    border: 1px solid var(--primary-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 0 auto;
-    overflow: hidden;
-    box-shadow: 0 0 15px var(--glow-purple);
-}
-
-/* Card headers */
-.card-header,
-.terminal-header {
-    background: var(--background-dark);
-    margin: -1.5rem -1.5rem 1.5rem -1.5rem;
-    padding: 0.8rem 1rem;
-    border-bottom: 1px solid var(--primary-color);
-    display: flex;
-    align-items: center;
-}
-
-/* Card content */
-.card-content,
-.terminal-content,
-.project-content,
-.tool-content,
-.research-content {
-    background: var(--background-light);
-    margin: 0;
-    padding: 0;
-    border-radius: 0 0 8px 8px;
-}
-
-/* Hover effects */
-.card-base:hover,
-.tool-card:hover,
-.research-card:hover,
-.cert-card:hover,
-.resource-card:hover,
-.talk-card:hover,
-.skill-category:hover {
-    transform: translateY(-5px);
-    transition: transform 0.3s ease;
-    box-shadow: 0 5px 15px var(--glow-purple);
-}
-
-/* Preserve specific card heights where needed */
-.project-card {
-    height: 450px;
-}
-
-.terminal {
-    height: 400px;
-}
-
-/* Ensure content stays within borders */
-.card-content,
-.terminal-content {
-    overflow-y: auto;
-    max-height: calc(100% - 45px);
-}
-
-.tryhackme-badge {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: var(--background-light);
-    border: 1px solid var(--primary-color);
-    border-radius: 8px;
-    box-shadow: 0 0 15px var(--glow-purple);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-.tryhackme-badge:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px var(--glow-purple);
-}
-
-.tryhackme-badge::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    animation: scanline 2s linear infinite;
-}
-
-.tryhackme-badge h3 {
-    color: var(--primary-color);
-    font-family: 'Fira Code', monospace;
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.tryhackme-badge h3::before {
-    content: '>';
-    color: var(--secondary-color);
-}
-
-/* Make the TryHackMe iframe more visible */
-.tryhackme-badge iframe {
-    width: 100%;
-    height: 100px;
-    border: none;
-    background: transparent;
-    filter: drop-shadow(0 0 8px var(--glow-purple));
-}
-
-@keyframes scanline {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(100%);
-    }
+    transform: translateY(-2px);
 }
 
 /* Platform Sections */
@@ -1642,57 +1229,6 @@ section:nth-child(even) {
 .read-more:hover {
     color: var(--primary-color);
     text-shadow: 0 0 10px var(--glow-purple);
-}
-
-/* Masonry Grid Layout */
-.masonry-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-auto-rows: 0;
-    grid-gap: 2rem;
-}
-
-/* Apply masonry to specific grids */
-.content-grid,
-.research-grid,
-.resources-grid,
-.talks-grid,
-.writeups-grid {
-    composes: masonry-grid;
-}
-
-/* Section Background Patterns */
-section {
-    position: relative;
-    overflow: hidden;
-}
-
-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.03;
-    z-index: 0;
-    pointer-events: none;
-    background-image: 
-        linear-gradient(45deg, var(--primary-color) 25%, transparent 25%),
-        linear-gradient(-45deg, var(--primary-color) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, var(--primary-color) 75%),
-        linear-gradient(-45deg, transparent 75%, var(--primary-color) 75%);
-    background-size: 20px 20px;
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-}
-
-section:nth-child(even)::before {
-    background-image: 
-        radial-gradient(var(--primary-color) 2px, transparent 2px),
-        radial-gradient(var(--secondary-color) 2px, transparent 2px);
-    background-size: 40px 40px;
-    background-position: 0 0, 20px 20px;
-    opacity: 0.05;
 }
 
 /* Enhanced Card Animations */
@@ -1849,3 +1385,92 @@ section h2::before {
 }
 
 /* Add this script to initialize masonry layout */
+
+/* Enhanced Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+        filter: blur(5px);
+    }
+    50% {
+        filter: blur(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 5px var(--glow-purple); }
+    50% { box-shadow: 0 0 20px var(--glow-purple), 0 0 30px var(--glow-blue); }
+    100% { box-shadow: 0 0 5px var(--glow-purple); }
+}
+
+@keyframes borderGlow {
+    0% { border-color: var(--primary-color); }
+    50% { border-color: var(--secondary-color); }
+    100% { border-color: var(--primary-color); }
+}
+
+/* Apply animations to elements */
+.card-base {
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.card-base:hover {
+    animation: glowPulse 2s infinite;
+}
+
+/* Staggered animations for grid items */
+.grid-layout > * {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.grid-layout > *:nth-child(1) { animation-delay: 0.1s; }
+.grid-layout > *:nth-child(2) { animation-delay: 0.2s; }
+.grid-layout > *:nth-child(3) { animation-delay: 0.3s; }
+.grid-layout > *:nth-child(4) { animation-delay: 0.4s; }
+.grid-layout > *:nth-child(5) { animation-delay: 0.5s; }
+.grid-layout > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Smooth transitions */
+.card-base,
+.tag,
+.button,
+.nav-link {
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Interactive elements hover effects */
+.tag:hover,
+.button:hover,
+.nav-link:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+}
+
+/* Card hover effects */
+.card-base:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--secondary-color);
+}
+
+.card-base:hover::after {
+    opacity: 1;
+}
+
+/* Reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+    .card-base,
+    .grid-layout > *,
+    .tag,
+    .button,
+    .nav-link {
+        animation: none;
+        transition: none;
+    }
+}
