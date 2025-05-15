@@ -4,19 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D4rkm4g1c | Cybersecurity Professional</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://tryhackme.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="D4rkm4g1c - Cybersecurity Professional specializing in cloud security, automation, and security tool development. Expertise in Azure security assessments and compliance.">
+    <meta name="keywords" content="cybersecurity, cloud security, Azure security, security automation, penetration testing">
+    <meta name="author" content="D4rkm4g1c">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="D4rkm4g1c | Cybersecurity Professional">
+    <meta property="og:description" content="Cybersecurity Professional specializing in cloud security, automation, and security tool development.">
+    <meta property="og:image" content="images/logo.png">
+    <meta property="og:url" content="https://d4rkm4g1c.github.io">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="D4rkm4g1c | Cybersecurity Professional">
+    <meta name="twitter:description" content="Cybersecurity Professional specializing in cloud security, automation, and security tool development.">
+    <meta name="twitter:image" content="images/logo.png">
+    
+    <!-- Preconnect to External Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
     <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" as="style">
     
     <!-- Defer non-critical CSS -->
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "D4rkm4g1c",
+        "url": "https://d4rkm4g1c.github.io",
+        "jobTitle": "Cybersecurity Professional",
+        "knowsAbout": ["Cloud Security", "Security Automation", "Penetration Testing", "Azure Security"],
+        "image": "images/logo.png"
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation - Reorganized menu items -->
-    <nav id="navbar">
+    <nav id="navbar" aria-label="Main navigation">
         <div class="container">
             <div class="logo-container">
                 <picture>
@@ -26,49 +69,51 @@
                 </picture>
                 <span class="logo-text">D4rkm4g1c</span>
             </div>
-            <div class="nav-toggle" id="navToggle">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#tools">Tools</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#content">Blog</a></li>
-                <li><a href="#talks">Talks</a></li>
-                <li><a href="#certifications">Certs</a></li>
-                <li><a href="#contact">Contact</a></li>
+            </button>
+            <ul class="nav-links" role="menu">
+                <li role="none"><a href="#home" role="menuitem">Home</a></li>
+                <li role="none"><a href="#about" role="menuitem">About</a></li>
+                <li role="none"><a href="#projects" role="menuitem">Projects</a></li>
+                <li role="none"><a href="#tools" role="menuitem">Tools</a></li>
+                <li role="none"><a href="#research" role="menuitem">Research</a></li>
+                <li role="none"><a href="#content" role="menuitem">Blog</a></li>
+                <li role="none"><a href="#talks" role="menuitem">Talks</a></li>
+                <li role="none"><a href="#certifications" role="menuitem">Certs</a></li>
+                <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" aria-label="Hero section">
         <div class="container">
             <div class="hero-content">
                 <h1>D4rkm4g1c</h1>
-                <div class="typewriter-container">
+                <div class="typewriter-container" aria-live="polite">
                     <span class="typewriter"></span>
-                    <span class="cursor">|</span>
+                    <span class="cursor" aria-hidden="true">|</span>
                 </div>
                 <div class="social-links">
-                    <a href="https://github.com/D4rkm4g1c" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/D4rkm4g1c" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
-            <div class="terminal-section">
+            <div class="terminal-section" aria-label="Interactive terminal">
                 <div class="terminal">
                     <div class="terminal-header">
-                        <div class="terminal-buttons">
+                        <div class="terminal-buttons" aria-hidden="true">
                             <span></span>
                             <span></span>
                             <span></span>
                         </div>
                         <div class="terminal-title">visitor@d4rkm4g1c:~$</div>
                     </div>
-                    <div class="terminal-content" id="terminal-content">
+                    <div class="terminal-content" id="terminal-content" aria-live="polite">
                         <!-- Terminal content will be dynamically inserted here -->
                     </div>
                 </div>
@@ -405,9 +450,12 @@ AzureSecuritySuite/
         </div>
     </footer>
 
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
-        <i class="fas fa-moon"></i>
+    <!-- Theme toggle button -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+        <i class="fas fa-sun" aria-hidden="true"></i>
     </button>
-    <script src="script.js"></script>
+
+    <!-- Scripts -->
+    <script type="module" src="script.js"></script>
 </body>
 </html> 
