@@ -16,13 +16,15 @@
     --success: #059669;
     --warning: #d97706;
     --error: #dc2626;
-    
-    /* Dark Mode Colors */
-    --dark-background: #111827;
-    --dark-background-light: #1f2937;
-    --dark-text: #f3f4f6;
-    --dark-text-light: #9ca3af;
-    --dark-border: #374151;
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --background: #111827;
+    --background-dark: #1f2937;
+    --text: #f3f4f6;
+    --text-light: #9ca3af;
+    --border: #374151;
 }
 
 /* Base Styles */
@@ -166,39 +168,26 @@ h3 { font-size: 1.5rem; }
     align-items: center;
 }
 
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-    body {
-        background: var(--dark-background);
-        color: var(--dark-text);
-    }
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    transition: color 0.2s ease;
+}
 
-    #navbar {
-        background: var(--dark-background);
-        border-color: var(--dark-border);
-    }
+.theme-toggle:hover {
+    color: var(--primary);
+}
 
-    .card {
-        background: var(--dark-background-light);
-        border-color: var(--dark-border);
-    }
-
-    .tag {
-        background: var(--dark-background-light);
-        color: var(--dark-text);
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-        color: var(--dark-text);
-    }
-
-    .nav-links a {
-        color: var(--dark-text);
-    }
-
-    .nav-links a:hover {
-        color: var(--primary-light);
-    }
+.theme-toggle svg {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 /* Responsive Design */

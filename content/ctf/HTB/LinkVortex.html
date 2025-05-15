@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LinkVortex Write-up | D4rkm4g1c</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="stylesheet" href="../../../content/style.css">
 </head>
 <body>
     <nav id="navbar">
@@ -16,6 +16,13 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/content/ctf">Write-ups</a></li>
                 <li><a href="/#about">About</a></li>
+                <li>
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
@@ -297,5 +304,6 @@ sudo CHECK_CONTENT=true /usr/bin/bash /opt/ghost/clean_symlink.sh /home/bob/test
             <p>&copy; 2024 D4rkm4g1c. All rights reserved.</p>
         </div>
     </footer>
+    <script src="../../../script.js"></script>
 </body>
 </html>
