@@ -1,8 +1,9 @@
 /* Write-up Layout */
 .writeup {
     padding-top: 6rem;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
+    line-height: 1.7;
 }
 
 .writeup-header {
@@ -11,11 +12,12 @@
 }
 
 .writeup-header h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
     color: var(--text);
     letter-spacing: -0.02em;
+    line-height: 1.2;
 }
 
 .writeup-meta {
@@ -23,11 +25,12 @@
 }
 
 .writeup-header .lead {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     color: var(--text-light);
-    line-height: 1.7;
-    max-width: 700px;
+    line-height: 1.6;
+    max-width: 800px;
     margin: 0 auto;
+    font-weight: 400;
 }
 
 .breadcrumb {
@@ -74,23 +77,24 @@
 
 .quick-info {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
     margin-top: 1.5rem;
-    padding: 1rem;
+    padding: 1.5rem;
     background: var(--background-dark);
-    border-radius: 12px;
+    border-radius: 16px;
     border: 1px solid var(--border);
 }
 
 /* Code Blocks */
 .code-block {
-    margin: 2rem 0;
+    margin: 2.5rem 0;
     background: var(--background-dark);
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     border: 1px solid var(--border);
     position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .code-block::before {
@@ -107,11 +111,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
-    background: rgba(0, 0, 0, 0.2);
+    padding: 1.25rem 1.75rem;
+    background: rgba(0, 0, 0, 0.15);
     border-bottom: 1px solid var(--border);
     font-weight: 600;
     color: var(--text);
+    font-size: 0.95rem;
 }
 
 .copy-btn {
@@ -120,7 +125,7 @@
     color: var(--text-light);
     background: none;
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
@@ -134,12 +139,13 @@
 
 pre {
     margin: 0;
-    padding: 1.5rem;
+    padding: 2rem;
     overflow-x: auto;
     font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.6;
     color: var(--text);
+    background: transparent;
 }
 
 code {
@@ -147,17 +153,19 @@ code {
     font-size: 0.9rem;
     line-height: 1.5;
     background: var(--background-dark);
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
     color: var(--primary);
+    border: 1px solid var(--border);
 }
 
 /* Tables */
 .results-table {
-    margin: 2rem 0;
+    margin: 2.5rem 0;
     overflow-x: auto;
-    border-radius: 12px;
+    border-radius: 16px;
     border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 table {
@@ -167,7 +175,7 @@ table {
 }
 
 th, td {
-    padding: 1rem;
+    padding: 1.25rem;
     text-align: left;
     border: 1px solid var(--border);
 }
@@ -191,7 +199,7 @@ tr:hover {
 
 /* Sections */
 section {
-    margin: 4rem 0;
+    margin: 5rem 0;
 }
 
 section:first-child {
@@ -199,44 +207,48 @@ section:first-child {
 }
 
 h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--primary);
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--primary);
     color: var(--text);
     font-weight: 700;
     letter-spacing: -0.01em;
+    line-height: 1.3;
 }
 
 h3 {
-    font-size: 1.5rem;
-    margin: 2.5rem 0 1.5rem;
+    font-size: 1.75rem;
+    margin: 3rem 0 1.5rem;
     color: var(--text);
     font-weight: 600;
+    line-height: 1.4;
 }
 
 h4 {
-    font-size: 1.25rem;
-    margin: 2rem 0 1rem;
+    font-size: 1.4rem;
+    margin: 2.5rem 0 1.25rem;
     color: var(--text);
     font-weight: 600;
+    line-height: 1.4;
 }
 
 h5 {
-    font-size: 1.1rem;
-    margin: 1.5rem 0 1rem;
+    font-size: 1.2rem;
+    margin: 2rem 0 1rem;
     color: var(--text);
     font-weight: 600;
+    line-height: 1.4;
 }
 
 /* Lists */
 ul, ol {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    padding-left: 2rem;
 }
 
 li {
-    margin: 0.5rem 0;
+    margin: 0.75rem 0;
     color: var(--text-light);
     line-height: 1.7;
 }
@@ -247,76 +259,78 @@ li strong {
 
 /* Alerts */
 .alert {
-    padding: 1.5rem;
-    margin: 2rem 0;
-    border-radius: 12px;
-    border-left: 4px solid var(--primary);
+    padding: 2rem;
+    margin: 2.5rem 0;
+    border-radius: 16px;
+    border-left: 5px solid var(--primary);
     background: var(--background-dark);
     border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .alert.info {
     border-left-color: var(--info);
-    background: rgba(0, 128, 255, 0.1);
+    background: rgba(0, 128, 255, 0.08);
 }
 
 .alert.warning {
     border-left-color: var(--warning);
-    background: rgba(255, 170, 0, 0.1);
+    background: rgba(255, 170, 0, 0.08);
 }
 
 .alert.error {
     border-left-color: var(--error);
-    background: rgba(255, 0, 64, 0.1);
+    background: rgba(255, 0, 64, 0.08);
 }
 
 .alert.success {
     border-left-color: var(--success);
-    background: rgba(0, 255, 65, 0.1);
+    background: rgba(0, 255, 65, 0.08);
 }
 
 /* File Content */
 .file-content {
-    margin: 2rem 0;
+    margin: 2.5rem 0;
 }
 
 .file-content h4 {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     color: var(--text);
     font-weight: 600;
 }
 
 /* Flags Section */
 .flags {
-    margin-top: 4rem;
+    margin-top: 5rem;
 }
 
 .flag-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
 .flag {
-    padding: 1.5rem;
+    padding: 2rem;
     background: var(--background-dark);
-    border-radius: 12px;
+    border-radius: 16px;
     border: 1px solid var(--border);
     transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .flag:hover {
     border-color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
 }
 
 .flag code {
     display: block;
-    margin-top: 1rem;
-    padding: 1rem;
+    margin-top: 1.25rem;
+    padding: 1.25rem;
     background: var(--background);
-    border-radius: 8px;
+    border-radius: 12px;
     font-family: 'Fira Code', monospace;
     color: var(--primary);
     border: 1px solid var(--border);
@@ -326,15 +340,15 @@ li strong {
 /* Tags */
 .tag {
     display: inline-block;
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--primary);
     background: var(--background-dark);
-    border-radius: 25px;
+    border-radius: 30px;
     border: 1px solid var(--primary);
-    margin-right: 0.75rem;
-    margin-bottom: 0.75rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
     transition: all 0.3s ease;
 }
 
@@ -346,9 +360,10 @@ li strong {
 
 /* Paragraphs and Text */
 p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
     color: var(--text-light);
-    line-height: 1.7;
+    line-height: 1.8;
+    font-size: 1.05rem;
 }
 
 strong {
@@ -361,11 +376,12 @@ a {
     color: var(--primary);
     text-decoration: none;
     transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
 }
 
 a:hover {
     color: var(--primary-light);
-    text-decoration: underline;
+    border-bottom-color: var(--primary-light);
 }
 
 /* Mobile Responsiveness */
