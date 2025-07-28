@@ -4,12 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JailMonkeyEraser: Bypassing iOS Jailbreak Detection | D4rkm4g1c</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Comprehensive analysis of jailbreak detection mechanisms and bypass techniques using Frida dynamic instrumentation. Research on iOS security and mobile application protection.">
+    <meta name="keywords" content="iOS security, jailbreak detection, Frida, dynamic instrumentation, mobile security, bypass techniques">
+    <meta name="author" content="D4rkm4g1c">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- Navigation -->
     <nav id="navbar">
         <div class="container">
             <a href="/" class="logo">D4rkm4g1c</a>
@@ -40,6 +55,7 @@
                     <span class="tag">Frida</span>
                     <span class="tag">Jailbreak Detection</span>
                     <span class="tag">Dynamic Analysis</span>
+                    <span class="tag">Research</span>
                 </div>
                 <p class="lead">A comprehensive analysis of jailbreak detection mechanisms and how to bypass them using dynamic instrumentation. This research explores the technical implementation of popular detection libraries and demonstrates practical bypass techniques.</p>
             </header>
@@ -101,12 +117,17 @@
                     <p>To understand how these detection mechanisms work, we need to analyze the compiled binaries. Here's the process:</p>
 
                     <h4>1. Binary Extraction</h4>
-                    <pre><code># Extract the app binary
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Binary Analysis</span>
+                        </div>
+                        <pre><code># Extract the app binary
 cp /path/to/app.ipa /tmp/
 cd /tmp
 unzip app.ipa
 cd Payload/AppName.app
 otool -L AppName</code></pre>
+                    </div>
 
                     <h4>2. Hopper Analysis</h4>
                     <p>Load the binary into Hopper Disassembler to analyze the Objective-C runtime:</p>
@@ -120,7 +141,11 @@ otool -L AppName</code></pre>
                     <p>Based on the analysis, we identified the following key methods:</p>
 
                     <h5>JailMonkey Methods</h5>
-                    <pre><code>// Core detection methods
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>JailMonkey Detection Methods</span>
+                        </div>
+                        <pre><code>// Core detection methods
 - isJailBroken
 - canViolateSandbox
 - isDebugged
@@ -128,13 +153,23 @@ otool -L AppName</code></pre>
 - checkPaths
 - checkDyLibs
 - checkSymLinks</code></pre>
+                    </div>
 
                     <h5>DetectFrida Methods</h5>
-                    <pre><code>// Frida detection
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>DetectFrida Methods</span>
+                        </div>
+                        <pre><code>// Frida detection
 - isJailBroken</code></pre>
+                    </div>
 
                     <h5>JailBrokenHelper Methods</h5>
-                    <pre><code>// System checks
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>JailBrokenHelper Methods</span>
+                        </div>
+                        <pre><code>// System checks
 + hasCydiaInstalled
 + hasUndecimusInstalled
 + hasSileoInstalled
@@ -143,6 +178,7 @@ otool -L AppName</code></pre>
 + canEditSystemFiles
 + checkDYLD
 + checkSuspiciousObjCClasses</code></pre>
+                    </div>
                 </section>
 
                 <section id="implementation">
@@ -252,22 +288,41 @@ otool -L AppName</code></pre>
                     <h3>Step-by-Step Instructions</h3>
                     
                     <h4>1. Install Frida</h4>
-                    <pre><code># On your computer
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Installation Commands</span>
+                        </div>
+                        <pre><code># On your computer
 pip install frida-tools
 
 # On the jailbroken device (via Cydia/Sileo)
 # Add Frida repository and install frida-server</code></pre>
+                    </div>
 
                     <h4>2. Start Frida Server</h4>
-                    <pre><code># On the device
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Start Frida Server</span>
+                        </div>
+                        <pre><code># On the device
 frida-server</code></pre>
+                    </div>
 
                     <h4>3. Launch Target App</h4>
-                    <pre><code># On your computer
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Launch with Frida</span>
+                        </div>
+                        <pre><code># On your computer
 frida -U -f com.example.app -l jailmonkeyeraser.js</code></pre>
+                    </div>
 
                     <h3>Expected Output</h3>
-                    <pre><code>Spawning `com.example.app`...                                  
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Expected Console Output</span>
+                        </div>
+                        <pre><code>Spawning `com.example.app`...                                  
 Jailbreak/Frida detection bypass hooks installed!
 Spawned `com.example.app`. Resuming main thread!               
 [iPhone::com.example.app ]-> [Bypass] JailBrokenHelper.hasCydiaInstalled() -> false
@@ -278,6 +333,7 @@ Spawned `com.example.app`. Resuming main thread!
 [Bypass] JailBrokenHelper.checkDYLD() -> false
 [Bypass] JailBrokenHelper.checkSuspiciousObjCClasses() -> false
 [Bypass] JailBrokenHelper.canEditSystemFiles() -> false</code></pre>
+                    </div>
                 </section>
 
                 <section id="technical-details">
@@ -287,12 +343,17 @@ Spawned `com.example.app`. Resuming main thread!
                     <p>The script uses Frida's powerful hooking capabilities to intercept method calls:</p>
 
                     <h4>Interceptor.attach() Breakdown</h4>
-                    <pre><code>Interceptor.attach(JailMonkey[method].implementation, {
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Method Hooking Example</span>
+                        </div>
+                        <pre><code>Interceptor.attach(JailMonkey[method].implementation, {
     onLeave: function(retval) {
         console.log('[Bypass] JailMonkey.' + method + '() -> false');
         retval.replace(0); // false/NO
     }
 });</code></pre>
+                    </div>
 
                     <p><strong>Key Components:</strong></p>
                     <ul>
@@ -374,11 +435,14 @@ Spawned `com.example.app`. Resuming main thread!
         </article>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 D4rkm4g1c. All rights reserved.</p>
+            <p>&copy; 2024 D4rkm4g1c. All rights reserved. | Cybersecurity Professional & Penetration Tester</p>
         </div>
     </footer>
+    
+    <!-- Scripts -->
     <script src="/script.js"></script>
 </body>
 </html> 

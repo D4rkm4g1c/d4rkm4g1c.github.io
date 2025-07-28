@@ -125,12 +125,20 @@ function initScrollEffects() {
     
     if (navbar) {
         window.addEventListener('scroll', throttle(() => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            
             if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                if (currentTheme === 'dark') {
+                    navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                }
                 navbar.style.backdropFilter = 'blur(10px)';
+                navbar.style.borderBottom = '1px solid var(--border)';
             } else {
                 navbar.style.background = 'var(--background)';
                 navbar.style.backdropFilter = 'none';
+                navbar.style.borderBottom = '1px solid var(--border)';
             }
         }, 100));
     }
@@ -181,7 +189,7 @@ function throttle(func, limit) {
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+    const theme = savedTheme || (prefersDark ? 'dark' : 'dark'); // Default to dark for cybersecurity theme
     setTheme(theme);
 });
 
