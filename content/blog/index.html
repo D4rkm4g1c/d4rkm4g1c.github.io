@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Research Blog | D4rkm4g1c</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <a href="/" class="logo">D4rkm4g1c</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#content">Write-ups</a></li>
+                <li><a href="/#about">About</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="writeup">
+            <header class="writeup-header">
+                <h1>Security Research Blog</h1>
+                <p class="lead">In-depth analysis of security tools, techniques, and research findings.</p>
+            </header>
+
+            <div class="grid">
+                <!-- JailMonkeyEraser Blog Post -->
+                <article class="content-card blog">
+                    <div class="content-card-header">
+                        <div class="tags">
+                            <span class="tag">iOS Security</span>
+                            <span class="tag">Frida</span>
+                            <span class="tag">Jailbreak Detection</span>
+                        </div>
+                        <span class="date">January 2024</span>
+                    </div>
+                    <div class="content-card-body">
+                        <h3>JailMonkeyEraser: Bypassing iOS Jailbreak Detection</h3>
+                        <p>A comprehensive analysis of jailbreak detection mechanisms and how to bypass them using dynamic instrumentation. This research explores the technical implementation of popular detection libraries and demonstrates practical bypass techniques.</p>
+                    </div>
+                    <div class="content-card-footer">
+                        <span class="reading-time">15 min read</span>
+                        <a href="jailmonkeyeraser.html" class="button button-primary">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 D4rkm4g1c. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html> 

@@ -28,7 +28,9 @@
     <nav id="navbar">
         <div class="container">
             <a href="#" class="logo">D4rkm4g1c</a>
-            <button class="nav-toggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
                 <span></span>
             </button>
             <ul class="nav-links">
@@ -38,6 +40,11 @@
                 <li><a href="#tools">Tools</a></li>
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
@@ -56,19 +63,61 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="card">
+                <p>I'm a cybersecurity professional specializing in cloud security and automation. With expertise in Azure security assessments and tool development, I create solutions to help organizations strengthen their security posture through practical and innovative approaches.</p>
+                <div class="tags mt-4">
+                    <span class="tag">Security Tool Development</span>
+                    <span class="tag">Cloud Security</span>
+                    <span class="tag">Security Compliance</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="grid">
+                <div class="card project-card">
+                    <h3>Security Automation Tools</h3>
+                    <p>Development of automated security assessment tools for cloud environments.</p>
+                    <div class="tags mt-4">
+                        <span class="tag">Python</span>
+                        <span class="tag">Azure</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                </div>
+                <div class="card project-card">
+                    <h3>Compliance Framework</h3>
+                    <p>Implementation of security compliance frameworks for enterprise environments.</p>
+                    <div class="tags mt-4">
+                        <span class="tag">Compliance</span>
+                        <span class="tag">Framework</span>
+                        <span class="tag">Enterprise</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Content Section -->
     <section id="content" class="content">
         <div class="container">
             <h2>Security Write-ups</h2>
             <div class="content-filters">
-                <button class="button" data-filter="all">All</button>
-                <button class="button" data-filter="htb">HackTheBox</button>
-                <button class="button" data-filter="blog">Blog Posts</button>
+                <button class="button filter-btn active" data-filter="all">All</button>
+                <button class="button filter-btn" data-filter="htb">HackTheBox</button>
+                <button class="button filter-btn" data-filter="blog">Blog Posts</button>
             </div>
             
             <div class="grid">
                 <!-- LinkVortex Write-up Card -->
-                <article class="content-card">
+                <article class="content-card htb">
                     <div class="content-card-header">
                         <div class="tags">
                             <span class="tag">HTB</span>
@@ -86,21 +135,62 @@
                     </div>
                 </article>
 
+                <!-- JailMonkeyEraser Blog Post Card -->
+                <article class="content-card blog">
+                    <div class="content-card-header">
+                        <div class="tags">
+                            <span class="tag">iOS Security</span>
+                            <span class="tag">Frida</span>
+                            <span class="tag">Research</span>
+                        </div>
+                        <span class="date">January 2024</span>
+                    </div>
+                    <div class="content-card-body">
+                        <h3>JailMonkeyEraser: Bypassing iOS Jailbreak Detection</h3>
+                        <p>A comprehensive analysis of jailbreak detection mechanisms and how to bypass them using dynamic instrumentation. This research explores the technical implementation of popular detection libraries.</p>
+                    </div>
+                    <div class="content-card-footer">
+                        <span class="reading-time">15 min read</span>
+                        <a href="content/blog/jailmonkeyeraser.html" class="button button-primary">Read More</a>
+                    </div>
+                </article>
+
                 <!-- More content cards can be added here -->
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Tools Section -->
+    <section id="tools" class="tools">
         <div class="container">
-            <h2>About Me</h2>
-            <div class="card">
-                <p>I'm a cybersecurity professional specializing in cloud security and automation. With expertise in Azure security assessments and tool development, I create solutions to help organizations strengthen their security posture through practical and innovative approaches.</p>
-                <div class="tags mt-4">
-                    <span class="tag">Security Tool Development</span>
-                    <span class="tag">Cloud Security</span>
-                    <span class="tag">Security Compliance</span>
+            <h2>Tools & Technologies</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Security Tools</h3>
+                    <ul>
+                        <li>Nmap</li>
+                        <li>Metasploit</li>
+                        <li>Burp Suite</li>
+                        <li>Wireshark</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Programming</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>Bash</li>
+                        <li>PowerShell</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Cloud & Infrastructure</h3>
+                    <ul>
+                        <li>Azure Security</li>
+                        <li>AWS Security</li>
+                        <li>Docker</li>
+                        <li>Kubernetes</li>
+                    </ul>
                 </div>
             </div>
         </div>

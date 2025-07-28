@@ -3,64 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
+    <title>404 - Page Not Found | D4rkm4g1c</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .error-content h1 {
+            font-size: 8rem;
+            margin: 0;
+            color: var(--primary);
+            line-height: 1;
+        }
+        
+        .error-content h2 {
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .error-content p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .glitch {
+            animation: glitch 2s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+        
+        @media (max-width: 768px) {
+            .error-content h1 {
+                font-size: 4rem;
+            }
+            
+            .error-content h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
-<body class="error-page">
-    <div id="particles-js"></div>
-    <div class="error-container">
-        <div class="error-emoji">¯\_(ツ)_/¯</div>
-        <div class="glitch" data-text="404">404</div>
-        <div class="error-terminal">
-            <div class="terminal-header">
-                <div class="terminal-buttons">
-                    <span></span><span></span><span></span>
-                </div>
-                <div class="terminal-title">error.log</div>
-            </div>
-            <div class="terminal-content">
-                <div class="error-message">
-                    <span class="prompt">$</span> ERROR: Page not found
-                    <br>
-                    <span class="prompt">$</span> LOCATION: /{{ request_path }}
-                    <br>
-                    <span class="prompt">$</span> STATUS: <span class="typing-animation">Looking for your page...</span>
-                    <br>
-                    <span class="prompt">$</span> SUGGESTION: Try these instead...
-                    <br>
-                    <div class="suggestions">
-                        <a href="/" class="button-effect">→ Home</a>
-                        <a href="/blog" class="button-effect">→ Blog</a>
-                        <a href="/contact" class="button-effect">→ Contact</a>
-                    </div>
-                    <div class="search-container">
-                        <span class="prompt">$</span> Search site:
-                        <input type="text" id="search-input" placeholder="Type to search...">
-                        <button onclick="searchSite()" class="button-effect">Search</button>
-                    </div>
-                </div>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <a href="/" class="logo">D4rkm4g1c</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#content">Write-ups</a></li>
+                <li><a href="/#about">About</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="error-page">
+        <div class="error-content">
+            <h1 class="glitch" data-text="404">404</h1>
+            <h2>Page Not Found</h2>
+            <p>The page you're looking for doesn't exist or has been moved.</p>
+            <div class="hero-cta">
+                <a href="/" class="button button-primary">
+                    <i class="fas fa-home"></i> Go Home
+                </a>
+                <a href="/#content" class="button">
+                    <i class="fas fa-book"></i> View Write-ups
+                </a>
             </div>
         </div>
-        <button onclick="history.back()" class="back-button button-effect">← Go Back</button>
     </div>
 
-    <script>
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80 },
-                color: { value: '#ffffff' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5 },
-                size: { value: 3 },
-                move: { enable: true, speed: 2 }
-            }
-        });
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 D4rkm4g1c. All rights reserved.</p>
+        </div>
+    </footer>
 
-        function searchSite() {
-            const query = document.getElementById('search-input').value;
-            window.location.href = `/search?q=${encodeURIComponent(query)}`;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html> 

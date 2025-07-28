@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JailMonkeyEraser: Bypassing iOS Jailbreak Detection | D4rkm4g1c</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <a href="/" class="logo">D4rkm4g1c</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#content">Write-ups</a></li>
+                <li><a href="/#about">About</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <article class="writeup">
+            <header class="writeup-header">
+                <h1>JailMonkeyEraser: Bypassing iOS Jailbreak Detection</h1>
+                <div class="writeup-meta">
+                    <span class="tag">iOS Security</span>
+                    <span class="tag">Frida</span>
+                    <span class="tag">Jailbreak Detection</span>
+                    <span class="tag">Dynamic Analysis</span>
+                </div>
+                <p class="lead">A comprehensive analysis of jailbreak detection mechanisms and how to bypass them using dynamic instrumentation. This research explores the technical implementation of popular detection libraries and demonstrates practical bypass techniques.</p>
+            </header>
+
+            <div class="writeup-content">
+                <section id="overview">
+                    <h2>Overview</h2>
+                    <div class="card">
+                        <p>JailMonkeyEraser is a Frida script designed to bypass jailbreak and dynamic instrumentation detection in iOS applications. This tool specifically targets popular detection libraries including JailMonkey, DetectFrida, and JailBrokenHelper, which are commonly used by developers to prevent their apps from running on jailbroken devices or when being analyzed with dynamic analysis tools.</p>
+                    </div>
+                </section>
+
+                <section id="background">
+                    <h2>Background: Jailbreak Detection Landscape</h2>
+                    
+                    <h3>Why Apps Detect Jailbreaks</h3>
+                    <p>iOS applications often implement jailbreak detection mechanisms for several reasons:</p>
+                    <ul>
+                        <li><strong>Security:</strong> Prevent unauthorized modifications to the app's behavior</li>
+                        <li><strong>Compliance:</strong> Meet enterprise security requirements</li>
+                        <li><strong>Anti-Analysis:</strong> Deter reverse engineering and dynamic analysis</li>
+                        <li><strong>DRM Protection:</strong> Protect digital rights management systems</li>
+                    </ul>
+
+                    <h3>Common Detection Libraries</h3>
+                    <p>Three popular libraries are frequently used for jailbreak detection:</p>
+                    
+                    <h4>1. JailMonkey</h4>
+                    <p>A React Native library that provides comprehensive jailbreak detection capabilities. It checks for:</p>
+                    <ul>
+                        <li>Common jailbreak file paths</li>
+                        <li>Jailbreak-related URL schemes</li>
+                        <li>Dynamic library injections</li>
+                        <li>Sandbox violations</li>
+                    </ul>
+
+                    <h4>2. DetectFrida</h4>
+                    <p>Specifically designed to detect Frida dynamic instrumentation framework. It looks for:</p>
+                    <ul>
+                        <li>Frida-specific processes</li>
+                        <li>Frida-related environment variables</li>
+                        <li>Frida server connections</li>
+                    </ul>
+
+                    <h4>3. JailBrokenHelper</h4>
+                    <p>A native iOS library that performs low-level system checks:</p>
+                    <ul>
+                        <li>Package manager detection (Cydia, Sileo, etc.)</li>
+                        <li>Suspicious application detection</li>
+                        <li>System file modification checks</li>
+                        <li>Dynamic library injection detection</li>
+                    </ul>
+                </section>
+
+                <section id="technical-analysis">
+                    <h2>Technical Analysis</h2>
+                    
+                    <h3>Reverse Engineering Process</h3>
+                    <p>To understand how these detection mechanisms work, we need to analyze the compiled binaries. Here's the process:</p>
+
+                    <h4>1. Binary Extraction</h4>
+                    <pre><code># Extract the app binary
+cp /path/to/app.ipa /tmp/
+cd /tmp
+unzip app.ipa
+cd Payload/AppName.app
+otool -L AppName</code></pre>
+
+                    <h4>2. Hopper Analysis</h4>
+                    <p>Load the binary into Hopper Disassembler to analyze the Objective-C runtime:</p>
+                    <ul>
+                        <li>Look for JailMonkey, DetectFrida, and JailBrokenHelper class references</li>
+                        <li>Identify method implementations</li>
+                        <li>Map the detection logic flow</li>
+                    </ul>
+
+                    <h4>3. Method Identification</h4>
+                    <p>Based on the analysis, we identified the following key methods:</p>
+
+                    <h5>JailMonkey Methods</h5>
+                    <pre><code>// Core detection methods
+- isJailBroken
+- canViolateSandbox
+- isDebugged
+- canFork
+- checkPaths
+- checkDyLibs
+- checkSymLinks</code></pre>
+
+                    <h5>DetectFrida Methods</h5>
+                    <pre><code>// Frida detection
+- isJailBroken</code></pre>
+
+                    <h5>JailBrokenHelper Methods</h5>
+                    <pre><code>// System checks
++ hasCydiaInstalled
++ hasUndecimusInstalled
++ hasSileoInstalled
++ hasZbraInstalled
++ isContainsSuspiciousApps
++ canEditSystemFiles
++ checkDYLD
++ checkSuspiciousObjCClasses</code></pre>
+                </section>
+
+                <section id="implementation">
+                    <h2>Implementation: JailMonkeyEraser</h2>
+                    
+                    <h3>Frida Script Architecture</h3>
+                    <p>The JailMonkeyEraser script uses Frida's Interceptor API to hook Objective-C methods at runtime. Here's the complete implementation:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>jailmonkeyeraser.js</span>
+                        </div>
+                        <pre><code>if (ObjC.available) {
+    // === JailMonkey methods ===
+    var JailMonkey = ObjC.classes.JailMonkey;
+    if (JailMonkey) {
+        [
+            'isJailBroken',
+            'canViolateSandbox',
+            'isDebugged',
+            'canFork',
+            'checkPaths',
+            'checkDyLibs',
+            'checkSymLinks',
+            'checkPathsMessage',
+            'checkDyLibsMessage',
+            'checkSymLinksMessage',
+            'jaiBrokenMessage'
+        ].forEach(function(method) {
+            if (JailMonkey[method]) {
+                Interceptor.attach(JailMonkey[method].implementation, {
+                    onLeave: function(retval) {
+                        console.log('[Bypass] JailMonkey.' + method + '() -> false');
+                        retval.replace(0); // false/NO
+                    }
+                });
+            }
+        });
+    }
+
+    // === DetectFrida methods ===
+    var DetectFrida = ObjC.classes.DetectFrida;
+    if (DetectFrida) {
+        if (DetectFrida['isJailBroken']) {
+            Interceptor.attach(DetectFrida['isJailBroken'].implementation, {
+                onLeave: function(retval) {
+                    console.log('[Bypass] DetectFrida.isJailBroken() -> false');
+                    retval.replace(0);
+                }
+            });
+        }
+    }
+
+    // === JailBrokenHelper methods ===
+    var JailBrokenHelper = ObjC.classes.JailBrokenHelper;
+    if (JailBrokenHelper) {
+        [
+            'hasCydiaInstalled',
+            'hasUndecimusInstalled',
+            'hasSileoInstalled',
+            'hasZbraInstalled',
+            'isContainsSuspiciousApps',
+            'isContainsSuspiciousSystemPathsExists',
+            'canEditSystemFiles',
+            'checkDYLD',
+            'checkSuspiciousObjCClasses'
+        ].forEach(function(method) {
+            if (JailBrokenHelper[method]) {
+                Interceptor.attach(JailBrokenHelper[method].implementation, {
+                    onLeave: function(retval) {
+                        console.log('[Bypass] JailBrokenHelper.' + method + '() -> false');
+                        retval.replace(0);
+                    }
+                });
+            }
+        });
+    }
+
+    console.log("Jailbreak/Frida detection bypass hooks installed!");
+} else {
+    console.log("Objective-C runtime is not available!");
+}</code></pre>
+                    </div>
+
+                    <h3>How the Bypass Works</h3>
+                    <p>The script operates by intercepting method calls at the Objective-C runtime level:</p>
+                    
+                    <ol>
+                        <li><strong>Method Hook:</strong> Uses Frida's Interceptor.attach() to hook method implementations</li>
+                        <li><strong>Return Value Manipulation:</strong> Forces all detection methods to return false (0)</li>
+                        <li><strong>Logging:</strong> Provides visibility into which methods are being bypassed</li>
+                        <li><strong>Runtime Execution:</strong> Works without modifying the original binary</li>
+                    </ol>
+                </section>
+
+                <section id="usage">
+                    <h2>Usage Guide</h2>
+                    
+                    <h3>Prerequisites</h3>
+                    <ul>
+                        <li>Jailbroken iOS device</li>
+                        <li>Frida server running on the device</li>
+                        <li>Frida client installed on your computer</li>
+                        <li>Target app's bundle identifier</li>
+                    </ul>
+
+                    <h3>Step-by-Step Instructions</h3>
+                    
+                    <h4>1. Install Frida</h4>
+                    <pre><code># On your computer
+pip install frida-tools
+
+# On the jailbroken device (via Cydia/Sileo)
+# Add Frida repository and install frida-server</code></pre>
+
+                    <h4>2. Start Frida Server</h4>
+                    <pre><code># On the device
+frida-server</code></pre>
+
+                    <h4>3. Launch Target App</h4>
+                    <pre><code># On your computer
+frida -U -f com.example.app -l jailmonkeyeraser.js</code></pre>
+
+                    <h3>Expected Output</h3>
+                    <pre><code>Spawning `com.example.app`...                                  
+Jailbreak/Frida detection bypass hooks installed!
+Spawned `com.example.app`. Resuming main thread!               
+[iPhone::com.example.app ]-> [Bypass] JailBrokenHelper.hasCydiaInstalled() -> false
+[Bypass] JailBrokenHelper.hasUndecimusInstalled() -> false
+[Bypass] JailBrokenHelper.hasSileoInstalled() -> false
+[Bypass] JailBrokenHelper.hasZbraInstalled() -> false
+[Bypass] JailBrokenHelper.isContainsSuspiciousApps() -> false
+[Bypass] JailBrokenHelper.checkDYLD() -> false
+[Bypass] JailBrokenHelper.checkSuspiciousObjCClasses() -> false
+[Bypass] JailBrokenHelper.canEditSystemFiles() -> false</code></pre>
+                </section>
+
+                <section id="technical-details">
+                    <h2>Technical Deep Dive</h2>
+                    
+                    <h3>Method Hooking Mechanism</h3>
+                    <p>The script uses Frida's powerful hooking capabilities to intercept method calls:</p>
+
+                    <h4>Interceptor.attach() Breakdown</h4>
+                    <pre><code>Interceptor.attach(JailMonkey[method].implementation, {
+    onLeave: function(retval) {
+        console.log('[Bypass] JailMonkey.' + method + '() -> false');
+        retval.replace(0); // false/NO
+    }
+});</code></pre>
+
+                    <p><strong>Key Components:</strong></p>
+                    <ul>
+                        <li><code>JailMonkey[method].implementation</code> - Gets the native function pointer</li>
+                        <li><code>onLeave</code> - Callback executed when the method returns</li>
+                        <li><code>retval.replace(0)</code> - Forces return value to false</li>
+                    </ul>
+
+                    <h3>Objective-C Runtime Integration</h3>
+                    <p>The script leverages Frida's Objective-C runtime integration:</p>
+                    <ul>
+                        <li>Accesses <code>ObjC.classes</code> to get class references</li>
+                        <li>Uses method name strings to locate implementations</li>
+                        <li>Works with both instance (-) and class (+) methods</li>
+                    </ul>
+                </section>
+
+                <section id="defense-evasion">
+                    <h2>Defense Evasion Techniques</h2>
+                    
+                    <h3>Detection Avoidance</h3>
+                    <p>To avoid being detected by the very tools we're bypassing:</p>
+                    <ul>
+                        <li><strong>Runtime Hooking:</strong> No binary modification required</li>
+                        <li><strong>Selective Bypass:</strong> Only targets specific detection methods</li>
+                        <li><strong>Logging Control:</strong> Can disable console output for stealth</li>
+                    </ul>
+
+                    <h3>Advanced Techniques</h3>
+                    <p>For more sophisticated bypass scenarios:</p>
+                    <ul>
+                        <li>Hook system calls directly</li>
+                        <li>Intercept file system access</li>
+                        <li>Bypass code signing checks</li>
+                        <li>Override environment variables</li>
+                    </ul>
+                </section>
+
+                <section id="limitations">
+                    <h2>Limitations and Considerations</h2>
+                    
+                    <h3>Technical Limitations</h3>
+                    <ul>
+                        <li>Requires jailbroken device</li>
+                        <li>Frida server must be running</li>
+                        <li>May not work with obfuscated binaries</li>
+                        <li>Some apps may have additional detection layers</li>
+                    </ul>
+
+                    <h3>Legal and Ethical Considerations</h3>
+                    <div class="alert info">
+                        <p><strong>Important:</strong> This tool is intended for educational and authorized security testing purposes only. Always ensure you have explicit permission before testing on any applications or devices.</p>
+                    </div>
+                </section>
+
+                <section id="conclusion">
+                    <h2>Conclusion</h2>
+                    <p>JailMonkeyEraser demonstrates the power of dynamic instrumentation in bypassing security controls. By understanding the underlying detection mechanisms and leveraging Frida's capabilities, we can effectively neutralize jailbreak detection systems.</p>
+                    
+                    <p>This research highlights the importance of:</p>
+                    <ul>
+                        <li>Understanding adversary capabilities</li>
+                        <li>Implementing defense-in-depth strategies</li>
+                        <li>Regular security testing and validation</li>
+                        <li>Staying current with bypass techniques</li>
+                    </ul>
+                </section>
+
+                <section id="references">
+                    <h2>References and Further Reading</h2>
+                    <ul>
+                        <li><a href="https://frida.re/">Frida Framework Documentation</a></li>
+                        <li><a href="https://github.com/GantMan/jail-monkey">JailMonkey Library</a></li>
+                        <li><a href="https://developer.apple.com/documentation/objectivec">Objective-C Runtime Reference</a></li>
+                        <li><a href="https://www.hopperapp.com/">Hopper Disassembler</a></li>
+                    </ul>
+                </section>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 D4rkm4g1c. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="/script.js"></script>
+</body>
+</html> 
