@@ -38,34 +38,22 @@ function initNavigation() {
     }
 }
 
-// Theme toggle functionality
+// Theme functionality - Always dark mode
 function initThemeToggle() {
-    const themeToggle = document.getElementById('themeToggle');
-    const icon = themeToggle?.querySelector('i');
+    // Always set theme to dark
+    setTheme('dark');
     
-    if (themeToggle && icon) {
-        // Set initial theme
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        setTheme(savedTheme);
-        
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            setTheme(newTheme);
-        });
+    // Hide theme toggle button
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.style.display = 'none';
     }
 }
 
 function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    
-    const themeToggle = document.getElementById('themeToggle');
-    const icon = themeToggle?.querySelector('i');
-    
-    if (icon) {
-        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-    }
+    // Always use dark theme
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
 }
 
 // Smooth scrolling for navigation links

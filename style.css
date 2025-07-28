@@ -1,4 +1,4 @@
-/* Base Variables */
+/* Base Variables - Always Dark Mode */
 :root {
     /* Primary Colors - Cybersecurity Theme */
     --primary: #00ff41;
@@ -29,17 +29,21 @@
     --gradient-hero: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
 }
 
-/* Light theme variables */
-[data-theme="light"] {
-    --background: #ffffff;
-    --background-dark: #f8f9fa;
-    --background-light: #ffffff;
-    --text: #1a1a1a;
-    --text-light: #666666;
-    --text-muted: #999999;
-    --border: #e0e0e0;
-    --border-light: #f0f0f0;
+/* Force dark mode for all theme attributes */
+[data-theme="light"],
+[data-theme="dark"] {
+    /* Always use dark theme variables */
+    --background: #0a0a0a;
+    --background-dark: #111111;
+    --background-light: #1a1a1a;
+    --text: #ffffff;
+    --text-light: #b3b3b3;
+    --text-muted: #666666;
+    --border: #333333;
+    --border-light: #444444;
 }
+
+
 
 /* Base Styles */
 * {
@@ -501,25 +505,7 @@ section h2::after {
     box-shadow: 0 4px 15px rgba(0, 255, 65, 0.3);
 }
 
-/* Theme Toggle */
-.theme-toggle {
-    background: none;
-    border: 2px solid var(--border);
-    color: var(--text);
-    cursor: pointer;
-    padding: 0.75rem;
-    display: flex;
-    align-items: center;
-    font-size: 1.25rem;
-    transition: all 0.3s ease;
-    border-radius: 8px;
-}
 
-.theme-toggle:hover {
-    color: var(--primary);
-    border-color: var(--primary);
-    background: var(--background-dark);
-}
 
 /* Footer */
 footer {

@@ -35,7 +35,7 @@ A professional cybersecurity consultant and penetration tester portfolio website
 6. **Certifications**: Professional credentials and research focus
 7. **Contact**: Professional contact information
 
-## Customization
+## Customisation
 
 The website uses CSS custom properties for easy theming:
 - Primary colors: Green cybersecurity theme
@@ -44,7 +44,7 @@ The website uses CSS custom properties for easy theming:
 
 ## Deployment
 
-The website is ready for deployment on GitHub Pages or any static hosting service. All assets are optimized for performance.
+The website is ready for deployment on GitHub Pages or any static hosting service. All assets are optimised for performance.
 
 ## License
 

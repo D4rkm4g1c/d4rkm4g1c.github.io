@@ -37,11 +37,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/#content">Write-ups</a></li>
                 <li><a href="/#about">About</a></li>
-                <li>
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                        <i class="fas fa-sun"></i>
-                    </button>
-                </li>
+
             </ul>
         </div>
     </nav>
@@ -57,7 +53,7 @@
                     <span class="tag">Privilege Escalation</span>
                     <span class="tag">Web Security</span>
                 </div>
-                <p class="lead">A Ghost CMS instance with security misconfigurations leading to unauthorized access and privilege escalation. This write-up covers web application security testing and Linux privilege escalation techniques.</p>
+                                        <p class="lead">A Ghost CMS instance with security misconfigurations leading to unauthorised access and privilege escalation. This write-up covers web application security testing and Linux privilege escalation techniques.</p>
             </header>
 
             <div class="writeup-content">
@@ -351,7 +347,7 @@ sudo CHECK_CONTENT=true /usr/bin/bash /opt/ghost/clean_symlink.sh /home/bob/test
                 <section id="takeaways">
                     <h2>Key Takeaways</h2>
                     <ol>
-                        <li>Always check for exposed Git repositories and analyze their contents</li>
+                        <li>Always check for exposed Git repositories and analyse their contents</li>
                         <li>Version-specific vulnerabilities in CMS systems can be critical (Ghost CMS 5.58)</li>
                         <li>Configuration files often contain valuable credentials</li>
                         <li>Symlink attacks can be effective for privilege escalation when combined with sudo permissions</li>
