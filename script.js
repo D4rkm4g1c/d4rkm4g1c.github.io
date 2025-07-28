@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initContentFilters();
     initScrollEffects();
     initAnimations();
+    initParallaxEffects();
+    initTypewriterEffect();
 });
 
 // Navigation functionality
@@ -107,7 +109,7 @@ function initContentFilters() {
     }
 }
 
-// Scroll effects
+// Enhanced scroll effects
 function initScrollEffects() {
     const navbar = document.getElementById('navbar');
     
@@ -121,7 +123,7 @@ function initScrollEffects() {
                 } else {
                     navbar.style.background = 'rgba(255, 255, 255, 0.95)';
                 }
-                navbar.style.backdropFilter = 'blur(10px)';
+                navbar.style.backdropFilter = 'blur(20px)';
                 navbar.style.borderBottom = '1px solid var(--border)';
             } else {
                 navbar.style.background = 'var(--background)';
@@ -132,10 +134,10 @@ function initScrollEffects() {
     }
 }
 
-// Animation on scroll
+// Enhanced animation on scroll
 function initAnimations() {
     const animatedElements = document.querySelectorAll(
-        '.card, .content-card, .project-card'
+        '.card, .content-card, .project-card, .service-card'
     );
 
     if ('IntersectionObserver' in window) {
@@ -159,6 +161,60 @@ function initAnimations() {
         // Fallback for browsers that don't support IntersectionObserver
         animatedElements.forEach(el => el.classList.add('animate'));
     }
+}
+
+// Parallax effects for hero section
+function initParallaxEffects() {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        window.addEventListener('scroll', throttle(() => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        }, 16));
+    }
+}
+
+// Typewriter effect for hero title
+function initTypewriterEffect() {
+    const heroTitle = document.querySelector('.hero h1');
+    if (heroTitle) {
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        heroTitle.style.borderRight = '2px solid var(--primary)';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                heroTitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                // Remove cursor after typing is complete
+                setTimeout(() => {
+                    heroTitle.style.borderRight = 'none';
+                }, 1000);
+            }
+        };
+        
+        // Start typing after a short delay
+        setTimeout(typeWriter, 500);
+    }
+}
+
+// Enhanced hover effects for cards
+function initCardHoverEffects() {
+    const cards = document.querySelectorAll('.card, .content-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+        });
+    });
 }
 
 // Utility function for throttling
@@ -192,4 +248,19 @@ if (document.querySelector('.glitch')) {
         }, 50);
     }, 2000);
 }
+
+// Enhanced loading animations
+window.addEventListener('load', () => {
+    // Add loaded class to body for additional animations
+    document.body.classList.add('loaded');
+    
+    // Initialize card hover effects
+    initCardHoverEffects();
+    
+    // Add staggered animation to cards
+    const cards = document.querySelectorAll('.card, .content-card');
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+});
 
