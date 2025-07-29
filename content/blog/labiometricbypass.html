@@ -202,40 +202,7 @@ strings /System/Library/Frameworks/LocalAuthentication.framework/LocalAuthentica
 @end</code></pre>
                     </div>
 
-                    <h4>3. Runtime Analysis with Frida</h4>
-                    <p>Using Frida to understand the runtime behaviour:</p>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span>Frida Analysis Script</span>
-                        </div>
-                        <pre><code>// Analyse LAContext method calls
-if (ObjC.available) {
-    var LAContext = ObjC.classes.LAContext;
-    if (LAContext) {
-        // Hook canEvaluatePolicy
-        Interceptor.attach(LAContext['- canEvaluatePolicy:error:'].implementation, {
-            onEnter: function(args) {
-                var policy = args[2].toInt32();
-                console.log('[TRACE] canEvaluatePolicy called with policy: ' + policy);
-            },
-            onLeave: function(retval) {
-                console.log('[TRACE] canEvaluatePolicy returned: ' + retval);
-            }
-        });
 
-        // Hook evaluatePolicy
-        Interceptor.attach(LAContext['- evaluatePolicy:localizedReason:reply:'].implementation, {
-            onEnter: function(args) {
-                var reason = new ObjC.Object(args[3]);
-                console.log('[TRACE] evaluatePolicy called with reason: ' + reason.toString());
-            },
-            onLeave: function(retval) {
-                console.log('[TRACE] evaluatePolicy completed');
-            }
-        });
-    }
-}</code></pre>
-                    </div>
                 </section>
 
                 <section id="implementation">

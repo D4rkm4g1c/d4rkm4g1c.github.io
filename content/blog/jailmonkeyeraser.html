@@ -274,38 +274,7 @@ lipo -info AppName                 # Check architecture support
 codesign -d AppName                # View code signing info</code></pre>
                     </div>
 
-                    <h5>Dynamic Analysis with Frida</h5>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span>Frida Analysis Scripts</span>
-                        </div>
-                        <pre><code>// Method tracing script
-if (ObjC.available) {
-    var JailMonkey = ObjC.classes.JailMonkey;
-    if (JailMonkey) {
-        Interceptor.attach(JailMonkey['isJailBroken'].implementation, {
-            onEnter: function(args) {
-                console.log('[TRACE] JailMonkey.isJailBroken() called');
-            },
-            onLeave: function(retval) {
-                console.log('[TRACE] JailMonkey.isJailBroken() returned: ' + retval);
-            }
-        });
-    }
-}
 
-// Class enumeration script
-if (ObjC.available) {
-    console.log("Available classes:");
-    ObjC.classes.forEach(function(className) {
-        if (className.toLowerCase().indexOf('jail') !== -1 ||
-            className.toLowerCase().indexOf('frida') !== -1 ||
-            className.toLowerCase().indexOf('cydia') !== -1) {
-            console.log("Found relevant class: " + className);
-        }
-    });
-}</code></pre>
-                    </div>
                 </section>
 
                 <section id="implementation">
